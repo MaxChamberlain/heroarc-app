@@ -2,7 +2,9 @@ import { THEME_ORDER, THEMES } from '../../themes/registry';
 import { useTheme } from '../../themes/ThemeProvider';
 import { ActivitySection, ConnectionsSection } from '../account/Connections';
 import { ImportSection } from '../account/Import';
+import { OuraSection } from '../account/Oura';
 import { AccountSection, PeopleSection } from '../account/People';
+import { useSaveTheme } from '../account/theme';
 import s from './Settings.module.css';
 import { Sheet } from './Sheet';
 import u from './ui.module.css';
@@ -17,7 +19,8 @@ export function SettingsSheet({
   onClose: () => void;
   onCustomize: () => void;
 }) {
-  const { id, setTheme } = useTheme();
+  const { id } = useTheme();
+  const setTheme = useSaveTheme();
   return (
     <Sheet open={open} onClose={onClose} title="Settings">
       <div className={u.stack}>
@@ -47,6 +50,7 @@ export function SettingsSheet({
         </div>
         <hr className={u.sep} />
         <AccountSection />
+        <OuraSection />
         <PeopleSection />
         <ActivitySection />
         <ConnectionsSection />

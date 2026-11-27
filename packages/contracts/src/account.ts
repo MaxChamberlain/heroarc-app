@@ -1,5 +1,6 @@
 import { oc } from '@orpc/contract';
 import { z } from 'zod';
+import { THEME_IDS } from './coach.js';
 
 /*
  * Accounts beyond sign-in itself (Better Auth serves /api/auth/*): the signed-in user's profile,
@@ -16,6 +17,8 @@ export const Me = z.object({
   timezone: z.string(),
   /** False until onboarding is finished. */
   onboarded: z.boolean(),
+  /** The theme the account chose (null: the default); applied on every device. */
+  theme: z.enum(THEME_IDS).nullable(),
 });
 export type Me = z.infer<typeof Me>;
 
@@ -54,7 +57,7 @@ export const accountContract = {
     .route({
       method: 'PATCH',
       path: '/api/v1/me',
-      summary: 'Update name, timezone, onboarding.',
+      summary: 'Update name, timezone, theme, onboarding.',
       tags: ['account'],
     })
     .input(
@@ -62,6 +65,7 @@ export const accountContract = {
         name: z.string().trim().min(1).max(60).optional(),
         timezone: z.string().max(64).refine(isZone, 'Unknown timezone').optional(),
         onboarded: z.boolean().optional(),
+        theme: z.enum(THEME_IDS).optional(),
       }),
     )
     .output(Me),

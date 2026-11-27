@@ -4,6 +4,7 @@ export * from './goals.js';
 export * from './hero.js';
 export * from './layout.js';
 export * from './legacy-import.js';
+export * from './oura.js';
 export * from './quotes.js';
 export * from './snapshot.js';
 export * from './trend.js';

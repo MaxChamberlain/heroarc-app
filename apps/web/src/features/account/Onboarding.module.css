@@ -1,0 +1,184 @@
+/* First-run setup (/onboarding). Tokens: themes/tokens.json. */
+.page {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.card {
+  width: min(760px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-self: flex-start;
+  padding: 28px 24px 24px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+.brand {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.steps {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.step {
+  flex: 1;
+  padding-top: 8px;
+  border-top: 3px solid var(--divider);
+  font-family: var(--font-label);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.done {
+  border-top-color: var(--acc);
+}
+.current {
+  border-top-color: var(--acc);
+  color: var(--card-text);
+  font-weight: 700;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.title {
+  margin: 0;
+  font-family: var(--title-font);
+  font-size: 26px;
+  font-weight: var(--title-weight);
+  color: var(--title-color);
+  background: var(--title-fill);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.lede {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+  border: var(--surface-border);
+  border-radius: var(--surface-radius);
+}
+
+/* Theme picker: each option wears its own theme (data-theme on the button). */
+.themes {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.theme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px 14px;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--font-body);
+  background: var(--page-bg);
+  color: var(--card-text);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+.theme[aria-pressed="true"] {
+  outline: 3px solid var(--acc);
+  outline-offset: 2px;
+}
+.figure {
+  width: 84px;
+  height: 104px;
+}
+.themeName {
+  font-family: var(--title-font);
+  font-size: 15px;
+  font-weight: 700;
+  /* Some themes paint titles with a gradient (transparent colour + background fill). */
+  color: var(--title-color);
+  background: var(--title-fill);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.themeHero {
+  font-family: var(--font-label);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Habit suggestions. */
+.chips {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  padding: 7px 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13.5px;
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+  border: var(--surface-border);
+  border-radius: 999px;
+}
+.chip[aria-pressed="true"] {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  border: var(--btn-primary-border);
+}
+.chip:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+/* Read by screen readers, not shown. */
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

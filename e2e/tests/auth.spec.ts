@@ -135,13 +135,48 @@ test('invite → sign up → confirm email → onboarding → board, then sign o
   const u = new URL(verify);
   await page.goto(u.pathname + u.search);
   await expect(page).toHaveURL(/\/onboarding$/);
+
+  // Onboarding: you → look → goals → habits → connect.
   await page.getByLabel('What should we call you?').fill('New Person');
+  await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.getByRole('heading', { name: 'Pick your look' })).toBeVisible();
+  await page.locator('[data-pick-theme="night"]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'night');
+  await page.getByRole('button', { name: /^Next: Night it is/ }).click();
+  await expect(page.getByRole('heading', { name: 'Your daily goals' })).toBeVisible();
+  await page.locator('[data-goals-skip]').click();
+  await expect(page.getByRole('heading', { name: 'Habits to track' })).toBeVisible();
+  await page.getByRole('button', { name: 'Stretch 10 minutes' }).click();
+  await page.getByLabel('Your own habit').fill('Walk the dog');
+  await page.getByRole('button', { name: 'Add', exact: true }).click();
+  await page.locator('[data-habits-save]').click();
+  await expect(page.getByRole('heading', { name: 'Bring things in' })).toBeVisible();
+  // Oura is offered here when the server has an Oura application (CI: the scripted one).
+  if ((await (await page.request.get('/api/v1/oura')).json()).available)
+    await expect(page.locator('[data-oura-connect]')).toBeVisible();
   await page.getByRole('button', { name: 'Go to my dashboard' }).click();
   await expect(page.locator('[data-tile]').first()).toBeVisible();
 
-  // A brand-new account sees its own (empty) board, not the demo data.
+  // A brand-new account sees its own board, with what onboarding set.
   const me = await (await page.request.get('/api/v1/me')).json();
-  expect(me).toMatchObject({ email, role: 'member', onboarded: true });
+  expect(me).toMatchObject({ email, role: 'member', onboarded: true, theme: 'night' });
+  const data = await (await page.request.get('/api/data')).json();
+  expect(data.habits.list.map((x: { n: string }) => x.n)).toEqual([
+    'Stretch 10 minutes',
+    'Walk the dog',
+  ]);
+
+  // The theme follows the account: another device (no theme cookie yet) switches to it.
+  const other = await page.context().browser()?.newContext({ serviceWorkers: 'block' });
+  if (other) {
+    const session = (await page.context().cookies()).filter((c) => c.name.includes('session'));
+    await other.addCookies(session);
+    const p2 = await other.newPage();
+    await p2.goto(new URL('/', page.url()).toString());
+    await expect(p2.locator('[data-tile]').first()).toBeVisible();
+    await expect(p2.locator('html')).toHaveAttribute('data-theme', 'night');
+    await other.close();
+  }
   const used = await (await admin.get('/api/v1/invites')).json();
   expect(used.find((i: { code: string }) => i.code === inv.code)?.usedAt).toBeTruthy();
 

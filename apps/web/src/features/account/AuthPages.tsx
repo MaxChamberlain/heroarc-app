@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
-import { api, orpc } from '../../lib/orpc';
+import { orpc } from '../../lib/orpc';
 import { cx } from '../board/lib';
 import u from '../board/ui.module.css';
 import s from './Auth.module.css';
 import { authClient, authError, inviteCookie, setInviteCookie } from './auth-client';
 
-function Shell({
+export function Shell({
   title,
   lede,
   children,
@@ -28,7 +28,7 @@ function Shell({
   );
 }
 
-function Field({
+export function Field({
   label,
   ...input
 }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
@@ -359,7 +359,7 @@ export function ResetPasswordPage({ token }: { token?: string }) {
   );
 }
 
-const zones = (): string[] => {
+export const zones = (): string[] => {
   try {
     return (Intl as unknown as { supportedValuesOf: (k: string) => string[] }).supportedValuesOf(
       'timeZone',
@@ -368,54 +368,6 @@ const zones = (): string[] => {
     return [Intl.DateTimeFormat().resolvedOptions().timeZone];
   }
 };
-
-/** First run after confirming the email: name and timezone. */
-export function OnboardingPage() {
-  const nav = useNavigate();
-  const me = useQuery({ ...orpc.account.me.queryOptions(), retry: false });
-  const [name, setName] = useState('');
-  const [tz, setTz] = useState(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
-  const [busy, setBusy] = useState(false);
-  useEffect(() => {
-    if (me.data) setName((n) => n || me.data.name);
-  }, [me.data]);
-  useEffect(() => {
-    if (me.isError) void nav({ to: '/sign-in' });
-  }, [me.isError, nav]);
-  return (
-    <Shell title="Welcome to HeroArc" lede="Two quick things, then your dashboard.">
-      <form
-        className={s.form}
-        onSubmit={async (e) => {
-          e.preventDefault();
-          setBusy(true);
-          await api.account.updateMe({ name: name.trim(), timezone: tz, onboarded: true });
-          window.location.assign('/');
-        }}
-      >
-        <Field
-          label="What should we call you?"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <label className={u.field}>
-          <span className={u.fieldLabel}>Your timezone (when your day starts and ends)</span>
-          <select className={u.select} value={tz} onChange={(e) => setTz(e.target.value)}>
-            {zones().map((z) => (
-              <option key={z} value={z}>
-                {z.replace(/_/g, ' ')}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button type="submit" className={cx(u.primary, s.full)} disabled={busy || !me.data}>
-          Go to my dashboard
-        </button>
-      </form>
-    </Shell>
-  );
-}
 
 /** What an app (from its own registration: unverified) says about itself. */
 interface PublicClient {

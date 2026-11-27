@@ -23,7 +23,8 @@ test('import the old sheet: preview, import, and a second import adds nothing', 
     pastDay(page, 71),
     pastDay(page, 72),
   ]);
-  const lb = Number((150 + (run % 90) / 10).toFixed(1));
+  // Unique per run (an identical weigh-in from an earlier run would be skipped as already there).
+  const lb = Number((100 + (run % 4000) / 10).toFixed(1));
   const sheets: Array<{ sheet: string; data: SheetData }> = [
     {
       sheet: 'Nutrition Log',

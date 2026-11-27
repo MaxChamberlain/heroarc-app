@@ -69,10 +69,11 @@ export function useTheme(): ThemeContextValue {
 export function ThemeStyles() {
   const { theme } = useTheme();
   const path = useRouterState({ select: (s) => s.location.pathname });
-  // The theme gallery shows every theme at once, so it needs every theme's fonts.
-  const fonts = path.startsWith('/dev/themes')
-    ? THEME_ORDER.map((t) => THEMES[t].fonts).join('&')
-    : theme.fonts;
+  // The theme gallery and onboarding's theme picker show every theme at once: every font.
+  const fonts =
+    path.startsWith('/dev/themes') || path === '/onboarding'
+      ? THEME_ORDER.map((t) => THEMES[t].fonts).join('&')
+      : theme.fonts;
   return (
     <>
       <meta name="theme-color" content={theme.deep} />

@@ -77,7 +77,8 @@ export function GoalsCard() {
 }
 
 /** Mifflin-St Jeor calculator plus the goals themselves (an estimate, not medical advice). */
-function GoalsForm({ onDone }: { onDone: () => void }) {
+/** The goals calculator and form (the Goals card's drawer, and onboarding). */
+export function GoalsForm({ onDone }: { onDone: () => void }) {
   const { data, patch, toast, api } = useDashboard();
   const G = data.goals;
   const [form, setForm] = useState<Form>(() => {

@@ -164,13 +164,31 @@ Coach is the in-app assistant: text, up to four photos and voice notes in; strea
   go in the `<context>` block of each user message, so the cached prefix never changes.
 - **Config:** `ANTHROPIC_API_KEY` (Coach is off without it), `COACH_MODEL` (default `claude-opus-5-5`),
   `OPENAI_API_KEY` + `OPENAI_TRANSCRIBE_MODEL` for voice notes.
-- **Tests never call Claude or OpenAI:** `COACH_MODEL=fake` swaps in a scripted model (`coach/fake-model.ts`)
-  that understands a few phrases, and the scripted transcriber, even when keys are in `.env`. CI's e2e job
-  sets it; `e2e/tests/coach.spec.ts` skips without it.
+- **Tests never call Claude, OpenAI or Oura:** `COACH_MODEL=fake` swaps in a scripted model
+  (`coach/fake-model.ts`) that understands a few phrases, and the scripted transcriber, even when keys are in
+  `.env`. `OURA_CLIENT_ID=fake` does the same for Oura. CI's e2e job sets both; the specs that need them skip
+  without them.
 - **Replies render as Markdown** (`features/coach/Markdown.tsx`, react-markdown): raw HTML is dropped and
   images aren't loaded. Never render model text any other way.
 - **Upload sizes:** app writes are capped at 16 KB by `HeroarcClientGuard`. A route that takes files declares
   its own limit with `@MaxBody(bytes)` (Coach send: 32 MB; the import: 11 MB).
+
+## Oura
+
+- **One HeroArc Oura application** (`OURA_CLIENT_ID` / `OURA_CLIENT_SECRET`; redirect
+  `<APP_URL>/api/v1/oura/callback`; scopes `daily stress`). Each person connects their own ring; nobody else
+  registers anything. A new Oura app allows 10 users until Oura approves it.
+- **Code:** `apps/api/src/oura/`:
+  - `oura-api.ts` is Oura's HTTP API, and `fake-oura.ts` the scripted stand-in (`OURA_CLIENT_ID=fake`).
+  - `oura.service.ts` connects, syncs and disconnects.
+  - `oura.controller.ts` serves `contract.oura` plus the browser callback.
+  - The mapping from Oura's JSON to dashboard rows is pure: `packages/domain/src/oura.ts`.
+- **Storage:** tokens in `oura_connections`, encrypted with `BETTER_AUTH_SECRET`. Refresh tokens are
+  single-use, so refreshing happens under a row lock. Daily numbers go to `daily_metrics` with `source='oura'`;
+  disconnecting deletes them. The first sync backfills 730 days, and later ones refresh the last 3.
+- **Who syncs:** the worker every 30 minutes (`worker/oura-queue.service.ts`), the API on connect and on
+  Refresh / Sync now. Hermes's `POST /sync` triggers a sync but only gets a count back.
+- **Never to AI:** Coach and agents don't read `daily_metrics` (`agent/no-wearables.test.ts`).
 
 ## Importing the original app's data
 
@@ -248,7 +266,8 @@ Phases from the rebuild plan. Build only what the current phase needs.
 - [ ] **Phase 2d – Next UI work:**
   - a meals card (today meals arrive only from agents)
   - retire `src/legacy` once signed off
-- [ ] **Phase 3 – Oura:** OAuth, worker sync, webhooks, Refresh.
+- [x] **Phase 3 – Oura:** connect (OAuth + PKCE) in Settings and onboarding, 2-year backfill, worker sync every
+      30 minutes, Refresh, disconnect deletes. (No webhooks yet: Oura's docs for them couldn't be confirmed.)
 - [x] **Phase 4 – Agent API:** API keys, REST tools + OpenAPI, the original Hermes API, MCP at `/mcp`
       (keys or OAuth), OAuth sign-in and consent for Claude / ChatGPT connectors, Agent activity (Apply / Undo).
       How to connect each tool: `docs/connect.md`. Needs HTTPS `APP_URL` / `API_URL` in production.

@@ -6,3 +6,4 @@ export * from './coach.js';
 export * from './health.js';
 export * from './layout.js';
 export * from './oauth.js';
+export * from './oura.js';

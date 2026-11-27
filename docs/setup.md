@@ -33,7 +33,8 @@ You do this once, by hand. Agents can't do it, because it needs account access.
 
 1. **Web service** → Settings → Custom Domains → add `app.<domain>`. Create the CNAME Render shows you.
 2. **API service** → add `api.<domain>` the same way. Agents, MCP and webhooks use this host.
-3. Uncomment the `domains:` lines in `render.yaml` so the Blueprint matches. That file is CODEOWNERS-protected.
+3. `render.yaml` lists these domains (`app.heroarc.io` and `api.heroarc.io`). If the domain changes, update it there; that file is CODEOWNERS-protected.
+4. On Cloudflare, set both records to **DNS only** (grey cloud). Otherwise Render may fail to issue certificates, and Coach's streamed replies can be buffered.
 
 ## 4. Settings Render asks for (on `heroarc-api`)
 
@@ -61,7 +62,13 @@ Sign-up is invite-only, so the first account needs an invite made on the server:
 3. Open the link it prints, create your account, and confirm your email.
 4. Invite everyone else from Settings → People.
 
-## 6. Later (Phase 3, Oura)
+## 6. Oura
 
-- The Oura client ID and secret, from HeroArc's own Oura developer app.
-- A token-encryption key.
+1. Create HeroArc's Oura application at https://cloud.ouraring.com/oauth/applications:
+   - Redirect URIs: `https://app.<domain>/api/v1/oura/callback` and, for local work,
+     `http://localhost:3000/api/v1/oura/callback`
+   - Scopes: `daily` and `stress`
+2. Put its Client ID and Client Secret on heroarc-api as `OURA_CLIENT_ID` and `OURA_CLIENT_SECRET`. The worker
+   copies them, along with `BETTER_AUTH_SECRET`, which encrypts the stored Oura tokens. Locally, put them in
+   `.env`.
+3. A new Oura application works for 10 people until Oura approves it.

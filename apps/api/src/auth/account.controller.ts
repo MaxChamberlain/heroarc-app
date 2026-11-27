@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import { contract, type Invite } from '@heroarc/contracts';
+import { contract, type Invite, THEME_IDS } from '@heroarc/contracts';
 import { and, type DbHandle, desc, eq, isNull, schema } from '@heroarc/db';
 import { Controller, Inject, UseGuards } from '@nestjs/common';
 import { Implement, implement, ORPCError } from '@orpc/nest';
@@ -12,6 +12,8 @@ import { email, type Mailer } from './mailer.js';
 import { MAILER } from './tokens.js';
 
 const { invites, user, userProfiles } = schema;
+const isThemeId = (v: string | null): v is (typeof THEME_IDS)[number] =>
+  !!v && (THEME_IDS as readonly string[]).includes(v);
 const INVITE_DAYS = 14;
 
 @Controller()
@@ -41,6 +43,7 @@ export class AccountController {
       role: p.role === 'admin' ? ('admin' as const) : ('member' as const),
       timezone: p.timezone,
       onboarded: p.onboarded,
+      theme: isThemeId(p.theme) ? p.theme : null,
     };
   }
 
@@ -76,12 +79,13 @@ export class AccountController {
           .update(user)
           .set({ name: input.name, updatedAt: new Date() })
           .where(eq(user.id, id));
-      if (input.timezone || input.onboarded != null)
+      if (input.timezone || input.onboarded != null || input.theme)
         await this.db
           .update(userProfiles)
           .set({
             ...(input.timezone && { timezone: input.timezone }),
             ...(input.onboarded != null && { onboarded: input.onboarded }),
+            ...(input.theme && { theme: input.theme }),
             updatedAt: new Date(),
           })
           .where(eq(userProfiles.userId, id));

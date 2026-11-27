@@ -6,7 +6,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { APIError, createAuthMiddleware } from 'better-auth/api';
 import { jwt, username } from 'better-auth/plugins';
-import type { Env } from '../infra/env.js';
+import { authSecret, type Env } from '../infra/env.js';
 import { email, type Mailer } from './mailer.js';
 
 const {
@@ -56,7 +56,7 @@ export async function findInvite(db: DbHandle['db'], code: string | undefined, f
  * Mounted at /api/auth/* (main.ts); the web app proxies that path, so cookies are first-party.
  */
 export function createAuth(env: Env, dbh: DbHandle, mailer: Mailer) {
-  const secret = env.BETTER_AUTH_SECRET ?? 'dev-only-secret-change-me-dev-only-secret-change-me';
+  const secret = authSecret(env);
   return betterAuth({
     appName: 'HeroArc',
     baseURL: env.APP_URL,

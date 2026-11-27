@@ -82,6 +82,8 @@ export const userProfiles = pgTable('user_profiles', {
   timezone: text().notNull().default('America/Denver'),
   /** False until the user finishes onboarding. */
   onboarded: boolean().notNull().default(false),
+  /** Chosen theme (a THEME_IDS value); follows the account to every device. Null: the default. */
+  theme: text(),
   createdAt: ts().notNull().defaultNow(),
   updatedAt: ts().notNull().defaultNow(),
 });

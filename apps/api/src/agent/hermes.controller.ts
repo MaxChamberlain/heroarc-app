@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { BadBody, readJson } from '../common/read-json.js';
+import { OuraNotConnected, OuraService } from '../oura/oura.service.js';
 import { CurrentUserService } from '../user/current-user.service.js';
 import { type AgentContext, AgentService } from './agent.service.js';
 import { foodInput, HermesInputError, trainingInput, weightInput } from './hermes.js';
@@ -18,6 +19,7 @@ export class HermesController {
   constructor(
     private readonly agent: AgentService,
     private readonly current: CurrentUserService,
+    private readonly oura: OuraService,
   ) {}
 
   private ctx(): AgentContext {
@@ -92,10 +94,19 @@ export class HermesController {
   }
 
   @Post('sync')
-  sync(@Res() res: Response) {
-    res.status(503).json({
-      ok: false,
-      error: "Oura sync isn't connected yet. Once it is, HeroArc syncs on its own.",
-    });
+  async sync(@Res() res: Response) {
+    // Only a count comes back: Oura data never goes to agents.
+    try {
+      const r = await this.oura.sync(this.current.userId());
+      res.status(200).json({ ok: true, result: `Synced ${r.days} days from Oura.` });
+    } catch (e) {
+      res.status(e instanceof OuraNotConnected ? 409 : 502).json({
+        ok: false,
+        error:
+          e instanceof OuraNotConnected
+            ? 'Oura is not connected for this account (HeroArc → Settings → Oura).'
+            : 'Oura sync failed; HeroArc retries on its own every 30 minutes.',
+      });
+    }
   }
 }

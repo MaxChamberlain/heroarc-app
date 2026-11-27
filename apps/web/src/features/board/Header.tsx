@@ -1,7 +1,10 @@
 import { heroProgress } from '@heroarc/domain';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { orpc } from '../../lib/orpc';
 import { SLOT_PILLAR } from '../../themes/types';
 import { usePendingActivity } from '../account/Connections';
+import { useOuraStatus } from '../account/Oura';
 import { type HeroFill, heroSvg } from './art';
 import { useDashboard } from './DashboardContext';
 import s from './Header.module.css';
@@ -14,7 +17,7 @@ import {
   RefreshIcon,
   SparkIcon,
 } from './icons';
-import { cx, dayLabel, eventId, shift } from './lib';
+import { cx, dayLabel, shift } from './lib';
 
 const SLOTS = ['helm', 'armor', 'legs', 'blade', 'aura'] as const;
 
@@ -47,6 +50,8 @@ export function Header({
   const { data, sel, setSel, today, isToday, minDay, reload, toast, api } = useDashboard();
   const [spinning, setSpinning] = useState(false);
   const waiting = usePendingActivity();
+  const oura = useOuraStatus();
+  const qc = useQueryClient();
 
   /** Refresh: ask for a wearable sync, then reload the snapshot. */
   const refresh = async () => {
@@ -58,21 +63,28 @@ export function Header({
       toast(msg);
       setTimeout(() => setSpinning(false), Math.max(0, 600 - (Date.now() - t0)));
     };
-    let synced = false;
-    try {
-      synced = (await api.legacy.syncRequest({ id: eventId('s') })).ok;
-    } catch {
-      synced = false;
+    // With Oura connected, sync it first; otherwise just reload.
+    let ouraMsg = '';
+    if (oura.data?.connected) {
+      try {
+        const r = await api.oura.sync();
+        qc.setQueryData(orpc.oura.status.queryKey(), r);
+        if (r.status === 'reconnect') ouraMsg = 'Oura needs connecting again (Settings → Oura).';
+        else if (r.status === 'error') ouraMsg = "Couldn't reach Oura; HeroArc will retry shortly.";
+      } catch {
+        ouraMsg = "Couldn't reach Oura; HeroArc will retry shortly.";
+      }
     }
     try {
       const next = await reload();
-      if (!synced) done('Reloaded. Oura sync is not available right now.');
-      else
-        done(
-          next?.updated && next.updated !== prev
-            ? `Synced. Updated ${next.updated}`
-            : 'Synced. Already up to date',
-        );
+      done(
+        ouraMsg ||
+          (!oura.data?.connected
+            ? 'Reloaded.'
+            : next?.updated && next.updated !== prev
+              ? `Synced. Updated ${next.updated}`
+              : 'Synced. Already up to date'),
+      );
     } catch {
       done('Could not refresh. Close and reopen the app.');
     }

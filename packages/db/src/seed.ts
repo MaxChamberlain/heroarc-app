@@ -216,6 +216,8 @@ for (const day of days) {
   metricRows.push({
     userId,
     date: day,
+    // Made-up numbers, not Oura's: disconnecting Oura (which deletes source 'oura') keeps them.
+    source: 'seed',
     sleepScore,
     readiness,
     sleepHours: Math.round(between(5.8, 8.3) * 10) / 10,

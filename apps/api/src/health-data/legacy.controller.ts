@@ -2,6 +2,7 @@ import { contract } from '@heroarc/contracts';
 import { Controller, UseGuards } from '@nestjs/common';
 import { Implement, implement } from '@orpc/nest';
 import { HeroarcClientGuard } from '../common/heroarc-client.guard.js';
+import { OuraService } from '../oura/oura.service.js';
 import { CurrentUserService } from '../user/current-user.service.js';
 import { HealthDataService } from './health-data.service.js';
 
@@ -17,6 +18,7 @@ export class LegacyController {
   constructor(
     private readonly data: HealthDataService,
     private readonly user: CurrentUserService,
+    private readonly oura: OuraService,
   ) {}
 
   @Implement(contract.legacy.data)
@@ -104,6 +106,12 @@ export class LegacyController {
   /** Oura isn't connected yet (Phase 3). `ok: false` makes the page say sync isn't available. */
   @Implement(contract.legacy.syncRequest)
   syncRequest() {
-    return implement(contract.legacy.syncRequest).handler(() => ({ ok: false }));
+    // Sync now, if this account has Oura connected.
+    return implement(contract.legacy.syncRequest).handler(async () => ({
+      ok: await this.oura
+        .sync(this.user.userId())
+        .then(() => true)
+        .catch(() => false),
+    }));
   }
 }

@@ -91,8 +91,9 @@ jobs:
         image: axllent/mailpit:latest
         ports: ["1025:1025", "8025:8025"]
     env:
-      # Coach runs its scripted stand-in in CI: no API keys, no cost, deterministic.
+      # Coach and Oura run scripted stand-ins in CI: no API keys, no cost, deterministic.
       COACH_MODEL: fake
+      OURA_CLIENT_ID: fake
       DATABASE_URL: postgres://heroarc:heroarc@localhost:5432/heroarc
       REDIS_URL: redis://localhost:6379
       INTERNAL_API_URL: http://localhost:4000

@@ -5,8 +5,9 @@ import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { orpc } from '../../lib/orpc';
 import { isThemeId } from '../../themes/registry';
-import { useTheme } from '../../themes/ThemeProvider';
 import { authClient } from '../account/auth-client';
+import { useOuraReturn } from '../account/Oura';
+import { useAccountTheme, useSaveTheme } from '../account/theme';
 import { bareClass, CoachColumn, CoachPanel } from '../coach/CoachPanel';
 import { CoachProvider } from '../coach/CoachProvider';
 import s from './Board.module.css';
@@ -46,6 +47,8 @@ export function BoardPage() {
     else if (me.data && !me.data.onboarded) void nav({ to: '/onboarding' });
   }, [session.isPending, session.data, me.data, nav]);
   const ready = signedIn && !!me.data?.onboarded;
+  // A device that hasn't seen the account's theme yet switches to it.
+  useAccountTheme(me.data);
 
   const snapshot = useQuery({
     ...orpc.legacy.data.queryOptions(),
@@ -122,8 +125,11 @@ function Board({
   const openCoach = () => (bp === 'board' ? setCollapsed(false) : setCoachSheet(true));
 
   // What Coach does in the app, and what it changed on the server.
+  // Back from Oura's sign-in: say how it went; reload once the history arrives.
+  useOuraReturn();
   const { setSel, reload } = useDashboard();
-  const { setTheme } = useTheme();
+  // Coach's theme switch is remembered on the account, like one made in Settings.
+  const setTheme = useSaveTheme();
   const qc = useQueryClient();
   const onApp = (a: AppAction) => {
     if (a.kind === 'show_day') setSel(a.date);

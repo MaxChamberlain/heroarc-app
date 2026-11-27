@@ -7,6 +7,7 @@ import { HealthDataModule } from './health-data/health-data.module.js';
 import { ImportModule } from './import/import.module.js';
 import { InfraModule } from './infra/infra.module.js';
 import { LayoutModule } from './layout/layout.module.js';
+import { OuraModule } from './oura/oura.module.js';
 import { SystemController } from './system/system.controller.js';
 
 @Module({
@@ -18,6 +19,7 @@ import { SystemController } from './system/system.controller.js';
     LayoutModule,
     CoachModule,
     ImportModule,
+    OuraModule,
   ],
   controllers: [HealthController, SystemController],
 })

@@ -5,6 +5,7 @@ import { Test } from '@nestjs/testing';
 import { ORPCModule } from '@orpc/nest';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { OuraNotConnected, OuraService } from '../oura/oura.service.js';
 import { CurrentUserService } from '../user/current-user.service.js';
 import { HealthDataService } from './health-data.service.js';
 import { LegacyController } from './legacy.controller.js';
@@ -20,6 +21,11 @@ const data = {
   logTraining: vi.fn(),
 };
 const user = { userId: () => 'u1', timeZone: () => 'America/Denver' };
+const oura = {
+  sync: vi.fn(async (): Promise<{ days: number }> => {
+    throw new OuraNotConnected();
+  }),
+};
 const APP = { 'x-heroarc': '1', 'content-type': 'application/json' };
 
 describe('LegacyController (the original page API)', () => {
@@ -32,6 +38,7 @@ describe('LegacyController (the original page API)', () => {
       providers: [
         { provide: HealthDataService, useValue: data },
         { provide: CurrentUserService, useValue: user },
+        { provide: OuraService, useValue: oura },
       ],
     }).compile();
     app = moduleRef.createNestApplication({ bodyParser: false });
@@ -185,11 +192,18 @@ describe('LegacyController (the original page API)', () => {
     });
   });
 
-  it('answers sync-request with ok: false until Oura is connected', async () => {
+  it('answers sync-request with ok: false until Oura is connected, then syncs', async () => {
     await request(app.getHttpServer())
       .post('/api/sync-request')
       .set(APP)
       .send({ id: 's1abc' })
       .expect(200, { ok: false });
+    oura.sync.mockResolvedValueOnce({ days: 3 });
+    await request(app.getHttpServer())
+      .post('/api/sync-request')
+      .set(APP)
+      .send({ id: 's2abc' })
+      .expect(200, { ok: true });
+    expect(oura.sync).toHaveBeenLastCalledWith('u1');
   });
 });

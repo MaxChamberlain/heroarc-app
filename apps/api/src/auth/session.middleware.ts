@@ -13,7 +13,7 @@ const { userProfiles } = schema;
 /** Paths anyone may call without signing in. */
 const PUBLIC = [
   /^\/health$/,
-  /^\/api\/system\//,
+  /^\/api\/v1\/system\/health$/, // for uptime checks: status only, nothing personal
   /^\/api\/auth\//,
   /^\/api\/v1\/auth-options$/,
   /^\/api\/v1\/invites\/[^/]+$/, // GET only (checked below)

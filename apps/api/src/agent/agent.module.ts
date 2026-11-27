@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LayoutModule } from '../layout/layout.module.js';
+import { OuraCoreModule } from '../oura/oura-core.module.js';
 import { ActivityController } from './activity.controller.js';
 import { AgentService } from './agent.service.js';
 import { AgentApiController } from './agent-api.controller.js';
@@ -8,7 +9,7 @@ import { McpController } from './mcp.controller.js';
 
 /** The agent tool registry and action log (Coach), and the APIs outside agents call: REST tools, MCP and the original Hermes API. */
 @Module({
-  imports: [LayoutModule],
+  imports: [LayoutModule, OuraCoreModule],
   controllers: [AgentApiController, HermesController, McpController, ActivityController],
   providers: [AgentService],
   exports: [AgentService],

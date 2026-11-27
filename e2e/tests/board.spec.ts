@@ -182,16 +182,31 @@ test("themes: switching in Settings restyles the board from that theme's variabl
     "getComputedStyle(document.documentElement).getPropertyValue('--card-tag').trim()",
   );
   expect(tag).toBe('"SYS//"');
-  // The choice is a cookie, so a reload renders the same theme on the server.
+  // The choice is a cookie, so a reload renders the same theme on the server…
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'cyberpunk');
-  await page.context().clearCookies({ name: 'heroarc_theme' });
+  // …and it's saved on the account, so other devices use it too.
+  expect((await (await page.request.get('/api/v1/me')).json()).theme).toBe('cyberpunk');
+  // Back to Simple: the demo account is shared with the other tests.
+  await page.getByRole('button', { name: 'Settings' }).click();
+  await page
+    .getByRole('dialog', { name: 'Settings' })
+    .locator('[data-theme-pick="simple"]')
+    .click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'simple');
+  await expect
+    .poll(async () => (await (await page.request.get('/api/v1/me')).json()).theme)
+    .toBe('simple');
 });
 
-test('Simple is the default theme, listed first', async ({ page }) => {
-  await page.context().clearCookies({ name: 'heroarc_theme' });
+test('Simple is the default theme, listed first', async ({ page, browser, baseURL }) => {
+  // Someone with no theme chosen anywhere (signed out, no cookie) gets Simple.
+  const fresh = await browser.newContext({ baseURL, serviceWorkers: 'block' });
+  const p2 = await fresh.newPage();
+  await p2.goto('/sign-in');
+  await expect(p2.locator('html')).toHaveAttribute('data-theme', 'simple');
+  await fresh.close();
   await page.goto('/');
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'simple');
   await page.getByRole('button', { name: 'Settings' }).click();
   await expect(page.locator('[data-theme-pick]').first()).toHaveAttribute(
     'data-theme-pick',

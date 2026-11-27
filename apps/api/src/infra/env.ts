@@ -5,6 +5,15 @@ const EnvSchema = z.object({
   PORT: z.coerce.number().int().positive().default(4000),
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
   REDIS_URL: z.string().min(1, 'REDIS_URL is required'),
+  /** Oura: HeroArc's Oura application (Connect Oura is hidden without it; 'fake' = scripted, for tests). */
+  OURA_CLIENT_ID: z
+    .string()
+    .optional()
+    .transform((v) => v?.trim() || undefined),
+  OURA_CLIENT_SECRET: z
+    .string()
+    .optional()
+    .transform((v) => v?.trim() || undefined),
   /** Where outside agents reach the API (https://api.<domain>); shown in Settings → Connections. */
   API_URL: z.string().url().default('http://localhost:4000'),
   /** Where people use the app (the web origin); sign-in links and cookies are for this origin. */
@@ -63,6 +72,13 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
     version: data.APP_VERSION ?? data.RENDER_GIT_COMMIT?.slice(0, 7) ?? 'dev',
   };
 }
+
+/** Only for local development: production refuses to start without BETTER_AUTH_SECRET. */
+const DEV_AUTH_SECRET = 'dev-only-secret-change-me-dev-only-secret-change-me';
+
+/** Signs sessions and encrypts stored tokens (OAuth signing keys, Oura tokens). */
+export const authSecret = (env: Pick<Env, 'BETTER_AUTH_SECRET'>): string =>
+  env.BETTER_AUTH_SECRET ?? DEV_AUTH_SECRET;
 
 /**
  * What the API (not the worker) needs in production: the secret that signs sessions and

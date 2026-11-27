@@ -26,9 +26,9 @@ services:
     healthCheckPath: /healthz
     # Deploy only after the commit's GitHub checks (CI) have passed.
     autoDeployTrigger: checksPass
-    # Custom domain (add the DNS record Render shows you):
-    # domains:
-    #   - app.example.com
+    # Custom domain: a CNAME to heroarc-web.onrender.com (Cloudflare: DNS only).
+    domains:
+      - app.heroarc.io
     buildFilter:
       paths:
         - apps/web/**
@@ -59,8 +59,9 @@ services:
     startCommand: node apps/api/dist/main.js
     healthCheckPath: /health
     autoDeployTrigger: checksPass
-    # domains:
-    #   - api.example.com
+    # Agents, MCP and webhooks: a CNAME to heroarc-api.onrender.com (Cloudflare: DNS only).
+    domains:
+      - api.heroarc.io
     buildFilter:
       paths:
         - apps/api/**
@@ -102,6 +103,11 @@ services:
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
+      # Oura: HeroArc's Oura application (redirect https://app.heroarc.io/api/v1/oura/callback).
+      - key: OURA_CLIENT_ID
+        sync: false
+      - key: OURA_CLIENT_SECRET
+        sync: false
       # Coach: Claude, and OpenAI for voice notes.
       - key: ANTHROPIC_API_KEY
         sync: false
@@ -137,6 +143,23 @@ services:
           type: keyvalue
           name: heroarc-kv
           property: connectionString
+      # The scheduled Oura sync: the same Oura application, and the secret its tokens are
+      # encrypted with, copied from heroarc-api (set them there once).
+      - key: BETTER_AUTH_SECRET
+        fromService:
+          type: web
+          name: heroarc-api
+          envVarKey: BETTER_AUTH_SECRET
+      - key: OURA_CLIENT_ID
+        fromService:
+          type: web
+          name: heroarc-api
+          envVarKey: OURA_CLIENT_ID
+      - key: OURA_CLIENT_SECRET
+        fromService:
+          type: web
+          name: heroarc-api
+          envVarKey: OURA_CLIENT_SECRET
 
   - type: keyvalue
     name: heroarc-kv

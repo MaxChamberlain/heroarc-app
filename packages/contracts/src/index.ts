@@ -6,6 +6,7 @@ import { connectionsContract } from './connections.js';
 import { importContract } from './import.js';
 import { layoutContract } from './layout.js';
 import { legacyContract } from './legacy.js';
+import { ouraContract } from './oura.js';
 import { systemContract } from './system.js';
 
 export * from './account.js';
@@ -16,6 +17,7 @@ export * from './connections.js';
 export * from './import.js';
 export * from './layout.js';
 export * from './legacy.js';
+export * from './oura.js';
 export * from './system.js';
 
 /**
@@ -44,6 +46,8 @@ export const contract = {
   activity: activityContract,
   /** Importing the original HeroArc's Google Sheet (see import.ts). */
   import: importContract,
+  /** Connecting Oura and syncing its daily numbers (see oura.ts). */
+  oura: ouraContract,
 };
 
 export type Contract = typeof contract;

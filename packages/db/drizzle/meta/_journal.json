@@ -57,6 +57,20 @@
       "when": 1795798620735,
       "tag": "0007_oauth",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1795810590394,
+      "tag": "0008_profile_theme",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1795811829788,
+      "tag": "0009_oura_connections",
+      "breakpoints": true
     }
   ]
 }

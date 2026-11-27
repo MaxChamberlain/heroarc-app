@@ -1,0 +1,41 @@
+# Local services for development and e2e tests: `pnpm services:up`.
+services:
+  postgres:
+    # Same major version as Render Postgres in render.yaml.
+    image: postgres:18
+    environment:
+      POSTGRES_USER: heroarc
+      POSTGRES_PASSWORD: heroarc
+      POSTGRES_DB: heroarc
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      # Postgres 18 images keep data under /var/lib/postgresql/<major>/, so mount the parent.
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heroarc"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  valkey:
+    image: valkey/valkey:8
+    # Same policy as Render Key Value in render.yaml; BullMQ requires noeviction.
+    command: ["valkey-server", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "${VALKEY_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  mailpit:
+    # Catches every email in dev (verification, reset, invites). UI: http://localhost:8025
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  postgres-data:

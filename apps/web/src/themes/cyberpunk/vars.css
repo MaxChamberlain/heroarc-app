@@ -1,0 +1,214 @@
+/* Cyberpunk: neon pink and cyan on midnight violet. Every token is listed in ../tokens.json. */
+[data-theme="cyberpunk"] {
+  --page-bg: #07040f;
+  --page-backdrop:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 160' preserveAspectRatio='none'><defs><linearGradient id='f' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2319e0ff' stop-opacity='0'/><stop offset='1' stop-color='%2319e0ff' stop-opacity='.28'/></linearGradient></defs><g stroke='url(%23f)' stroke-width='1' fill='none'><path d='M195 0 L-120 160 M195 0 L-20 160 M195 0 L70 160 M195 0 L135 160 M195 0 L195 160 M195 0 L255 160 M195 0 L320 160 M195 0 L410 160 M195 0 L510 160'/><path d='M0 20 H390 M0 46 H390 M0 80 H390 M0 124 H390'/></g></svg>") 50% 100% / 100% 160px no-repeat, radial-gradient(
+      60% 38% at 92% 0%,
+      rgba(255, 46, 151, 0.32),
+      transparent 70%
+    ) 0px 0px / auto no-repeat, radial-gradient(
+      55% 40% at 0% 32%,
+      rgba(25, 224, 255, 0.18),
+      transparent 70%
+    ) 0px 0px / auto no-repeat #07040f;
+  --page-overlay:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.16) 0px,
+      rgba(0, 0, 0, 0.16) 1px,
+      transparent 1px,
+      transparent 4px
+    )
+    0% 0% / auto repeat;
+  --page-overlay-opacity: 0.28;
+  --page-grain: none;
+  --page-grain-opacity: 0;
+  --text: #f4ecff;
+  --text-muted: #cdbff2;
+  --text-strong: #f4ecff;
+  --font-body: Rajdhani, system-ui, sans-serif;
+  --font-display: Orbitron, sans-serif;
+  --font-label: Orbitron, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 16px;
+  --weight-body: 600;
+  --weight-display: 700;
+  --display-shadow: 0 0 12px rgba(255, 46, 151, 0.55);
+  --focus: #19e0ff;
+  --header-bg: transparent;
+  --header-text: #f4ecff;
+  --header-border: none;
+  --header-tagline: "";
+  --header-tagline-color: #19e0ff;
+  --header-tagline-font: Orbitron, sans-serif;
+  --header-tagline-spacing: 0.2em;
+  --header-tagline-shadow: 0 0 8px rgba(25, 224, 255, 0.6);
+  --title-font: Orbitron, sans-serif;
+  --title-size: 40px;
+  --title-weight: 900;
+  --title-spacing: 0.04em;
+  --title-transform: uppercase;
+  --title-color: transparent;
+  --title-fill: linear-gradient(95deg, #ff2e97 0%, #b57bff 52%, #19e0ff 100%);
+  --title-shadow: none;
+  --title-filter: drop-shadow(rgba(25, 224, 255, 0.45) 2px 0px 0px)
+    drop-shadow(rgba(255, 46, 151, 0.45) -2px 0px 0px);
+  --subtitle-color: #f3f0e6;
+  --badge-text: "";
+  --badge-bg: transparent;
+  --badge-fg: #f4ecff;
+  --icon-btn-bg: #120a26;
+  --icon-btn-fg: #19e0ff;
+  --icon-btn-border: 1px solid #19e0ff;
+  --icon-btn-radius: 0px;
+  --icon-btn-shadow: 0 0 10px rgba(25, 224, 255, 0.25);
+  --card-bg: linear-gradient(160deg, rgba(28, 16, 60, 0.94), rgba(10, 5, 22, 0.94));
+  --card-text: #f4ecff;
+  --card-border: 1px solid #4a2c8f;
+  --card-radius: 0px;
+  --card-shadow:
+    #000000 0px 0px 0px 1px, rgba(139, 92, 255, 0.2) 0px 0px 26px 0px,
+    rgba(255, 46, 151, 0.06) 0px 0px 34px 0px inset;
+  --card-padding: 24px 20px 20px;
+  --card-stripe: none;
+  --card-stripe-width: 0px;
+  --card-stripe-glow: none;
+  --card-ornament-top: none;
+  --card-ornament-top-height: 0px;
+  --card-ornament-top-opacity: 1;
+  --card-ornament-bottom: none;
+  --card-ornament-bottom-width: 0px;
+  --card-ornament-bottom-height: 0px;
+  --card-corner: #19e0ff;
+  --card-corner-2: #ff2e97;
+  --card-corner-size: 18px;
+  --card-corner-thickness: 3px;
+  --card-corner-mirror: 1;
+  --card-led: none;
+  --card-led-shadow: none;
+  --card-tag: "SYS//";
+  --card-tag-counter: decimal-leading-zero;
+  --card-tag-color: #ff2e97;
+  --card-tag-font: Orbitron, sans-serif;
+  --card-title-font: Orbitron, sans-serif;
+  --card-title-size: 11px;
+  --card-title-weight: 700;
+  --card-title-spacing: 0.26em;
+  --card-title-transform: uppercase;
+  --card-title-color: #19e0ff;
+  --card-title-bg: transparent;
+  --card-title-border: none;
+  --card-title-radius: 0px;
+  --card-title-padding: 0;
+  --card-title-box-shadow: none;
+  --card-title-shadow: 0 0 10px rgba(25, 224, 255, 0.533);
+  --card-title-prefix: "// ";
+  --card-title-prefix-color: #ff2e97;
+  --card-title-icon-before: none;
+  --card-title-icon-after: none;
+  --card-title-icon-size: 0px;
+  --card-title-rule: none;
+  --card-title-rule-height: 0px;
+  --swatch-1: var(--card-bg);
+  --swatch-2: var(--card-bg);
+  --swatch-3: var(--card-bg);
+  --swatch-4: var(--card-bg);
+  --swatch-5: var(--card-bg);
+  --swatch-1-tag: "";
+  --swatch-2-tag: "";
+  --swatch-3-tag: "";
+  --swatch-4-tag: "";
+  --swatch-5-tag: "";
+  --acc: #ff2e97;
+  --acc2: #19e0ff;
+  --on-acc: #0b0b0b;
+  --good: #19e0ff;
+  --bad: #ff4d6d;
+  --warn: #ffcc4d;
+  --info: #8b5cff;
+  --dim: #7d6bb0;
+  --track: #2a1a52;
+  --track-2: #1a0f38;
+  --divider: rgba(205, 191, 242, 0.12);
+  --btn-bg: #120a26;
+  --btn-fg: #f4ecff;
+  --btn-border: 1px solid #4a2c8f;
+  --btn-radius: 0px;
+  --btn-font: Orbitron, sans-serif;
+  --btn-weight: 700;
+  --btn-transform: uppercase;
+  --btn-spacing: 0.1em;
+  --btn-shadow: inset 0 0 0 1px rgba(25, 224, 255, 0.35);
+  --control-clip: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
+  --btn-primary-bg: #ff2e97;
+  --btn-primary-fg: #0b0b0b;
+  --btn-primary-border: 1px solid #ff2e97;
+  --btn-primary-shadow: 0 0 14px rgba(255, 46, 151, 0.45);
+  --input-bg: #120a26;
+  --input-fg: #f4ecff;
+  --input-border: 1px solid #4a2c8f;
+  --input-radius: 0px;
+  --input-placeholder: #7d6bb0;
+  --check-bg: transparent;
+  --check-border: #2a1a52;
+  --check-radius: 0px;
+  --check-on-bg: #ff2e97;
+  --check-on-fg: #0b0b0b;
+  --check-today: #19e0ff;
+  --meter-bg: rgba(10, 5, 22, 0.7);
+  --meter-radius: 0px;
+  --meter-shadow: inset 0 0 0 1px #000000;
+  --meter-off: #1a0f38;
+  --meter-on: #19e0ff;
+  --meter-hi: #8b5cff;
+  --meter-pk: #ff2e97;
+  --meter-glow: 4px;
+  --meter-label: #c9b8ff;
+  --progress-track: #1a0f38;
+  --progress-border: 1px solid #4a2c8f;
+  --progress-radius: 0px;
+  --chart-grid: rgba(205, 191, 242, 0.14);
+  --chart-tip-bg: #0a0516;
+  --chart-tip-fg: #f4ecff;
+  --chart-guide: rgba(25, 224, 255, 0.5);
+  --surface-bg: #120a26;
+  --surface-fg: #f4ecff;
+  --surface-border: 1px solid #4a2c8f;
+  --surface-radius: 0px;
+  --surface-shadow: 0 0 26px rgba(139, 92, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.6);
+  --overlay-bg: rgba(4, 2, 10, 0.72);
+  --toast-bg: #0a0516;
+  --toast-fg: #f4ecff;
+  --toast-border: 1px solid #19e0ff;
+  --dock-bg: #120a26;
+  --dock-fg: #f4ecff;
+  --dock-border: 1px solid #4a2c8f;
+  --coach-bg: #120a26;
+  --bubble-user-bg: #ff2e97;
+  --bubble-user-fg: #0b0b0b;
+  --bubble-coach-bg: #1a0f38;
+  --bubble-coach-fg: #f4ecff;
+  --edit-outline: rgba(25, 224, 255, 0.7);
+  --edit-placeholder: rgba(25, 224, 255, 0.12);
+  --hero-off: #2a5461;
+  --hero-eyes: #ff8aa2;
+  --hero-eyes-off: #3b2a30;
+  --hero-aura: #5aa3b5;
+  --hero-aura-off: #244d58;
+  --hero-aura-lit: #8fe3f2;
+  --hero-pip: #ff9bd0;
+  --hero-pip-off: #19e0ff;
+  --hero-glow: radial-gradient(
+    closest-side,
+    rgba(196, 138, 96, 0.34),
+    rgba(90, 163, 181, 0.1) 55%,
+    transparent 72%
+  );
+}

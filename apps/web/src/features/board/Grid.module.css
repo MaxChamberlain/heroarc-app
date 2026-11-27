@@ -1,0 +1,101 @@
+/* The board: a 12-column grid on desktop, stacked columns on tablet and phone. */
+
+.board {
+  counter-reset: tile;
+  position: relative;
+}
+
+.item {
+  position: relative;
+  border-radius: var(--card-radius);
+  transition: box-shadow 0.3s ease;
+}
+/* A card Coach just pointed at. */
+.item[data-flash] {
+  box-shadow: 0 0 0 3px var(--edit-outline);
+}
+
+/* Customizing: tiles show a handle bar and a hide button; card content can't be clicked. */
+.editing {
+  outline: 2px dashed var(--edit-outline);
+  outline-offset: 3px;
+  border-radius: var(--card-radius);
+}
+.editing > section {
+  pointer-events: none;
+  user-select: none;
+}
+.chrome {
+  position: absolute;
+  z-index: 4;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.handle {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+  box-shadow: var(--surface-shadow);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: grab;
+  touch-action: none;
+}
+.handle:active {
+  cursor: grabbing;
+}
+.handle span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hide {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+  box-shadow: var(--surface-shadow);
+}
+
+/* Tablet and phone: columns of cards in reading order. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}

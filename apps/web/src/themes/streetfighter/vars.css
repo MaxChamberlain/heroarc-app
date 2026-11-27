@@ -1,0 +1,206 @@
+/* Arcade: cabinet blue, marquee yellow, fight-card red. Every token is listed in ../tokens.json. */
+[data-theme="streetfighter"] {
+  --page-bg: #070a1f;
+  --page-backdrop:
+    radial-gradient(70% 45% at 50% 30%, rgba(228, 32, 46, 0.3), transparent 70%) 0% 0% / auto repeat, repeating-conic-gradient(
+      at 50% 30%,
+      rgba(70, 110, 255, 0.16) 0deg,
+      rgba(70, 110, 255, 0.16) 4deg,
+      rgba(70, 110, 255, 0.05) 4deg,
+      rgba(70, 110, 255, 0.05) 6.5deg,
+      transparent 6.5deg,
+      transparent 11deg
+    ) 0% 0% / auto repeat, linear-gradient(#0a1034, #05071a 70%) 0% 0% / auto repeat;
+  --page-overlay:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.16) 0px,
+      rgba(0, 0, 0, 0.16) 1px,
+      transparent 1px,
+      transparent 3px
+    )
+    0% 0% / auto repeat,
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.5'/></svg>")
+    0% 0% / auto repeat;
+  --page-overlay-opacity: 0.5;
+  --page-grain: none;
+  --page-grain-opacity: 0;
+  --text: #ffffff;
+  --text-muted: #c9d2ff;
+  --text-strong: #ffffff;
+  --font-body: "Chakra Petch", system-ui, sans-serif;
+  --font-display: "Russo One", sans-serif;
+  --font-label: "Russo One", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 15px;
+  --weight-body: 600;
+  --weight-display: 400;
+  --display-shadow: 2px 2px 0 #000000;
+  --focus: #ffd400;
+  --header-bg: transparent;
+  --header-text: #ffffff;
+  --header-border: none;
+  --header-tagline: "ROUND 1 — FIGHT!";
+  --header-tagline-color: #e4202e;
+  --header-tagline-font: "Russo One", sans-serif;
+  --header-tagline-spacing: 0.3em;
+  --header-tagline-shadow: 1px 1px 0 #000000;
+  --title-font: "Russo One", sans-serif;
+  --title-size: 46px;
+  --title-weight: 400;
+  --title-spacing: 0.02em;
+  --title-transform: uppercase;
+  --title-color: transparent;
+  --title-fill: linear-gradient(#fff6a8 0%, #ffd400 52%, #ff8a00 100%);
+  --title-shadow: none;
+  --title-filter: drop-shadow(#000000 3px 3px 0px);
+  --subtitle-color: #f3f0e6;
+  --badge-text: "\00a0 1P\00a0 ";
+  --badge-bg: #e4202e;
+  --badge-fg: #ffffff;
+  --icon-btn-bg: #10173f;
+  --icon-btn-fg: #ffffff;
+  --icon-btn-border: 3px solid #000000;
+  --icon-btn-radius: 2px;
+  --icon-btn-shadow: 0 0 0 2px #4a62d6;
+  --card-bg: linear-gradient(180deg, #151e5c 0%, #0c1236 100%);
+  --card-text: #ffffff;
+  --card-border: 3px solid #000000;
+  --card-radius: 6px;
+  --card-shadow: 0 0 0 2px #4a62d6, 0 7px 0 #000000;
+  --card-padding: 22px 18px 18px;
+  --card-stripe: none;
+  --card-stripe-width: 0px;
+  --card-stripe-glow: none;
+  --card-ornament-top: none;
+  --card-ornament-top-height: 0px;
+  --card-ornament-top-opacity: 1;
+  --card-ornament-bottom: none;
+  --card-ornament-bottom-width: 0px;
+  --card-ornament-bottom-height: 0px;
+  --card-corner: #ffd400;
+  --card-corner-2: #ffd400;
+  --card-corner-size: 18px;
+  --card-corner-thickness: 4px;
+  --card-corner-mirror: -1;
+  --card-led: none;
+  --card-led-shadow: none;
+  --card-tag: "";
+  --card-tag-counter: none;
+  --card-tag-color: #c9d2ff;
+  --card-tag-font: "Russo One", sans-serif;
+  --card-title-font: "Russo One", sans-serif;
+  --card-title-size: 13px;
+  --card-title-weight: 400;
+  --card-title-spacing: 0.1em;
+  --card-title-transform: uppercase;
+  --card-title-color: #ffffff;
+  --card-title-bg: #e4202e;
+  --card-title-border: 2px solid #000000;
+  --card-title-radius: 0px;
+  --card-title-padding: 5px 12px;
+  --card-title-box-shadow: 3px 3px 0 #000000;
+  --card-title-shadow: none;
+  --card-title-prefix: "";
+  --card-title-prefix-color: #ffd400;
+  --card-title-icon-before: none;
+  --card-title-icon-after: none;
+  --card-title-icon-size: 0px;
+  --card-title-rule: none;
+  --card-title-rule-height: 0px;
+  --swatch-1: var(--card-bg);
+  --swatch-2: var(--card-bg);
+  --swatch-3: var(--card-bg);
+  --swatch-4: var(--card-bg);
+  --swatch-5: var(--card-bg);
+  --swatch-1-tag: "";
+  --swatch-2-tag: "";
+  --swatch-3-tag: "";
+  --swatch-4-tag: "";
+  --swatch-5-tag: "";
+  --acc: #ffd400;
+  --acc2: #36a3ff;
+  --on-acc: #0b0b0b;
+  --good: #ffd400;
+  --bad: #e4202e;
+  --warn: #ff9a3c;
+  --info: #36a3ff;
+  --dim: #6f7bc4;
+  --track: #1c2766;
+  --track-2: #1a2260;
+  --divider: rgba(201, 210, 255, 0.14);
+  --btn-bg: #10173f;
+  --btn-fg: #ffffff;
+  --btn-border: 2px solid #000000;
+  --btn-radius: 2px;
+  --btn-font: "Russo One", sans-serif;
+  --btn-weight: 400;
+  --btn-transform: uppercase;
+  --btn-spacing: 0.06em;
+  --btn-shadow: 0 0 0 2px #4a62d6;
+  --control-clip: none;
+  --btn-primary-bg: #ffd400;
+  --btn-primary-fg: #0b0b0b;
+  --btn-primary-border: 2px solid #000000;
+  --btn-primary-shadow: 3px 3px 0 #000000;
+  --input-bg: #10173f;
+  --input-fg: #ffffff;
+  --input-border: 2px solid #000000;
+  --input-radius: 2px;
+  --input-placeholder: #6f7bc4;
+  --check-bg: transparent;
+  --check-border: #1c2766;
+  --check-radius: 2px;
+  --check-on-bg: #ffd400;
+  --check-on-fg: #0b0b0b;
+  --check-today: #e4202e;
+  --meter-bg: #050818;
+  --meter-radius: 2px;
+  --meter-shadow: 0 0 0 2px #4a62d6, inset 0 0 0 1px #0c1236;
+  --meter-off: #1a2260;
+  --meter-on: #ffd400;
+  --meter-hi: #ff9a3c;
+  --meter-pk: #e4202e;
+  --meter-glow: 3px;
+  --meter-label: #ffd400;
+  --progress-track: #050818;
+  --progress-border: 2px solid #000000;
+  --progress-radius: 0px;
+  --chart-grid: rgba(201, 210, 255, 0.15);
+  --chart-tip-bg: #050818;
+  --chart-tip-fg: #ffffff;
+  --chart-guide: rgba(255, 212, 0, 0.5);
+  --surface-bg: #10173f;
+  --surface-fg: #ffffff;
+  --surface-border: 3px solid #000000;
+  --surface-radius: 6px;
+  --surface-shadow: 0 0 0 2px #4a62d6, 0 10px 30px rgba(0, 0, 0, 0.6);
+  --overlay-bg: rgba(2, 3, 12, 0.7);
+  --toast-bg: #050818;
+  --toast-fg: #ffffff;
+  --toast-border: 2px solid #ffd400;
+  --dock-bg: #10173f;
+  --dock-fg: #ffffff;
+  --dock-border: 3px solid #000000;
+  --coach-bg: #10173f;
+  --bubble-user-bg: #ffd400;
+  --bubble-user-fg: #0b0b0b;
+  --bubble-coach-bg: #1a2260;
+  --bubble-coach-fg: #ffffff;
+  --edit-outline: rgba(255, 212, 0, 0.7);
+  --edit-placeholder: rgba(255, 212, 0, 0.15);
+  --hero-off: #2a5461;
+  --hero-eyes: #ff8aa2;
+  --hero-eyes-off: #3b2a30;
+  --hero-aura: #5aa3b5;
+  --hero-aura-off: #244d58;
+  --hero-aura-lit: #8fe3f2;
+  --hero-pip: #fff07a;
+  --hero-pip-off: #36a3ff;
+  --hero-glow: radial-gradient(
+    closest-side,
+    rgba(196, 138, 96, 0.34),
+    rgba(90, 163, 181, 0.1) 55%,
+    transparent 72%
+  );
+}

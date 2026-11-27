@@ -1,0 +1,117 @@
+# Every job here is a required status check on `main`. Agent (Hermes) PRs auto-merge
+# only when all of them pass, and Render deploys only after checks pass on main.
+# This file is CODEOWNERS-protected.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify (lint, typecheck, unit tests, build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+
+  migrations:
+    name: migrations (in sync, non-destructive, apply cleanly)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: heroarc
+          POSTGRES_PASSWORD: heroarc
+          POSTGRES_DB: heroarc
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U heroarc" --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      DATABASE_URL: postgres://heroarc:heroarc@localhost:5432/heroarc
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Schema and committed migrations are in sync
+        run: |
+          pnpm db:generate
+          if [ -n "$(git status --porcelain packages/db/drizzle)" ]; then
+            echo "::error::packages/db/src/schema changed without a migration. Run 'pnpm db:generate' and commit packages/db/drizzle."
+            git status --porcelain packages/db/drizzle
+            exit 1
+          fi
+      - name: No unapproved destructive SQL
+        run: pnpm check:migrations
+      - name: Migrations apply to a fresh database
+        run: pnpm turbo run build --filter=@heroarc/db && pnpm db:migrate
+
+  e2e:
+    name: e2e (Playwright against built web + api)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: heroarc
+          POSTGRES_PASSWORD: heroarc
+          POSTGRES_DB: heroarc
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U heroarc" --health-interval 2s --health-timeout 3s --health-retries 30
+      valkey:
+        image: valkey/valkey:8
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "valkey-cli ping" --health-interval 2s --health-timeout 3s --health-retries 30
+      # Catches sign-up and invite emails; the auth e2e tests read them through its API.
+      mailpit:
+        image: axllent/mailpit:latest
+        ports: ["1025:1025", "8025:8025"]
+    env:
+      # Coach runs its scripted stand-in in CI: no API keys, no cost, deterministic.
+      COACH_MODEL: fake
+      DATABASE_URL: postgres://heroarc:heroarc@localhost:5432/heroarc
+      REDIS_URL: redis://localhost:6379
+      INTERNAL_API_URL: http://localhost:4000
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm db:migrate
+      - run: pnpm db:seed
+      - run: pnpm --filter @heroarc/e2e exec playwright install --with-deps chromium
+      - run: pnpm e2e
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/playwright-report
+          retention-days: 7

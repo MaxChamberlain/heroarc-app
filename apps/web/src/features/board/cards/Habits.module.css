@@ -1,0 +1,249 @@
+/* Habits: 7-day grid, month grid, trends and editor. Tokens: themes/tokens.json. */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) repeat(7, minmax(20px, 26px)) 34px;
+  align-items: center;
+  gap: 6px 3px;
+}
+.dayHead {
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.dayHead.sel {
+  color: var(--acc);
+}
+.name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13.5px;
+}
+.count {
+  text-align: right;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 24px;
+  aspect-ratio: 1;
+  justify-self: center;
+  padding: 0;
+  background: var(--check-bg);
+  border: 1.5px solid var(--check-border);
+  border-radius: var(--check-radius);
+}
+.box:disabled {
+  opacity: 0.35;
+}
+.box.on {
+  background: var(--check-on-bg);
+  border-color: var(--check-on-bg);
+}
+.box.on::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid var(--check-on-fg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.box.sel {
+  box-shadow:
+    0 0 0 2px var(--card-bg),
+    0 0 0 3.5px var(--check-today);
+}
+.box.pop {
+  animation: pop 0.28s ease-out;
+}
+@keyframes pop {
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pips {
+  display: flex;
+  gap: 4px;
+}
+.pips i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--track);
+}
+.pips i.on {
+  background: var(--acc);
+}
+
+/* Quick action: big rows to tick today's habits. */
+.toggleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 14px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: var(--btn-border);
+  border-radius: var(--btn-radius);
+  box-shadow: var(--btn-shadow);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+}
+.toggle[aria-pressed="true"] {
+  box-shadow: var(--btn-primary-shadow);
+}
+
+/* Month grid */
+.month {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+}
+.month .colHead {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: center;
+  max-height: 104px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.month .dayNum {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-align: right;
+  padding-right: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cell {
+  height: 22px;
+  padding: 0;
+  background: var(--check-bg);
+  border: 1px solid var(--check-border);
+  border-radius: 4px;
+}
+.cell.on {
+  background: var(--check-on-bg);
+  border-color: var(--check-on-bg);
+}
+.cell:disabled {
+  opacity: 0.3;
+}
+
+/* Trends */
+.months {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) repeat(6, 18px) 70px;
+  align-items: end;
+  gap: 8px 6px;
+}
+.months .mLabel {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.bar {
+  align-self: end;
+  justify-self: center;
+  width: 14px;
+  border-radius: 3px 3px 0 0;
+  background: var(--track-2);
+}
+.bar.cur {
+  background: var(--acc);
+}
+.bar.na {
+  height: 1px;
+  background: var(--track);
+}
+.pct {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.pct small {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: end;
+  gap: 8px;
+  height: 60px;
+  margin-top: 10px;
+}
+.week > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  height: 100%;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.week i {
+  display: block;
+  width: 70%;
+  border-radius: 3px 3px 0 0;
+  background: var(--track-2);
+}
+.week i.hi {
+  background: var(--acc);
+}
+
+/* Editor */
+.editRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.editRow input {
+  flex: 1 1 auto;
+}
+.iconBtn {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: var(--btn-border);
+  border-radius: var(--btn-radius);
+  box-shadow: var(--btn-shadow);
+}
+.iconBtn:disabled {
+  opacity: 0.35;
+}

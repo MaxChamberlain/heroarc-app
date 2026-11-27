@@ -1,0 +1,86 @@
+/* Sign-in, sign-up, verification, reset and onboarding pages. Tokens: themes/tokens.json. */
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+.card {
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 24px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+.brand {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.title {
+  margin: 0;
+  font-family: var(--title-font);
+  font-size: 26px;
+  font-weight: var(--title-weight);
+  color: var(--title-color);
+  background: var(--title-fill);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.lede {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.error {
+  margin: 0;
+  color: var(--bad);
+  font-size: 13.5px;
+}
+.ok {
+  margin: 0;
+  color: var(--good);
+  font-size: 13.5px;
+}
+.or {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--divider);
+}
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+.links a {
+  color: var(--acc);
+}
+.full {
+  width: 100%;
+}

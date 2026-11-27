@@ -1,0 +1,169 @@
+/* Training: week strip, session summary, session sheet, plan editor. Tokens: themes/tokens.json. */
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.day i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--track);
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text);
+}
+.day.sel span {
+  color: var(--acc);
+}
+.day.sel i {
+  border-color: var(--acc);
+}
+.day.fut {
+  opacity: 0.45;
+}
+.day i.done {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--on-acc);
+}
+.day i.partial {
+  background: var(--track-2);
+  border-color: var(--acc);
+  color: var(--acc);
+}
+.day i.rest {
+  background: var(--track-2);
+  color: var(--text-muted);
+}
+
+.summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--btn-radius);
+  background: var(--track-2);
+}
+.summary b {
+  font-size: 16px;
+}
+.status {
+  color: var(--good);
+  font-size: 13px;
+  font-weight: 700;
+}
+.summaryPartial .status {
+  color: var(--warn);
+}
+
+.lifts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lift {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--track-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+.up {
+  color: var(--good);
+}
+.down {
+  color: var(--bad);
+}
+
+/* Session sheet */
+.ex {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--divider);
+}
+.ex small {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.key {
+  gap: 8px;
+}
+.key > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.need {
+  padding-inline: 8px;
+  border-radius: 8px;
+  outline: 2px solid var(--warn);
+}
+.max {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.delta {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+/* Plan editor */
+.workout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+}
+.wHead,
+.xRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wHead input {
+  flex: 1 1 auto;
+  font-weight: 700;
+}
+.xRow .xName {
+  flex: 2 1 0;
+  min-width: 0;
+}
+.xRow .xSets {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.iconBtn {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: var(--btn-border);
+  border-radius: var(--btn-radius);
+  box-shadow: var(--btn-shadow);
+}
+.star[aria-pressed="true"] {
+  color: var(--acc);
+  box-shadow: var(--btn-primary-shadow);
+}

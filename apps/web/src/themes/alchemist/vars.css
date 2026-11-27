@@ -1,0 +1,259 @@
+/* Alchemist's Lab: parchment, ink and gold leaf. Every token is listed in ../tokens.json. */
+[data-theme="alchemist"] {
+  --page-bg:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 190' preserveAspectRatio='xMaxYMin slice'><path d='M370.9 63.6 L434.0 66.0 L370.9 68.4 Z M370.8 70.0 L403.0 77.5 L370.1 73.5 Z M369.7 75.0 L428.2 98.8 L368.1 79.5 Z M367.4 80.9 L395.2 99.0 L365.6 84.0 Z M364.8 85.3 L411.5 127.7 L361.7 89.0 Z M360.6 90.1 L380.4 116.6 L357.8 92.4 Z M356.5 93.3 L386.0 149.1 L352.4 95.7 Z M351.0 96.3 L360.6 128.0 L347.6 97.6 Z M346.1 98.0 L354.7 160.5 L341.4 98.8 Z M339.8 99.0 L338.0 132.0 L336.2 99.0 Z M334.6 98.8 L321.3 160.5 L329.9 98.0 Z M328.4 97.6 L315.4 128.0 L325.0 96.3 Z M323.6 95.7 L290.0 149.1 L319.5 93.3 Z M318.2 92.4 L295.6 116.6 L315.4 90.1 Z M314.3 89.0 L264.5 127.7 L311.2 85.3 Z M310.4 84.0 L280.8 99.0 L308.6 80.9 Z M307.9 79.5 L247.8 98.8 L306.3 75.0 Z M305.9 73.5 L273.0 77.5 L305.2 70.0 Z M305.1 68.4 L242.0 66.0 L305.1 63.6 Z M305.2 62.0 L273.0 54.5 L305.9 58.5 Z M306.3 57.0 L247.8 33.2 L307.9 52.5 Z M308.6 51.1 L280.8 33.0 L310.4 48.0 Z M311.2 46.7 L264.5 4.3 L314.3 43.0 Z M315.4 41.9 L295.6 15.4 L318.2 39.6 Z M319.5 38.7 L290.0 -17.1 L323.6 36.3 Z M325.0 35.7 L315.4 4.0 L328.4 34.4 Z M329.9 34.0 L321.3 -28.5 L334.6 33.2 Z M336.2 33.0 L338.0 0.0 L339.8 33.0 Z M341.4 33.2 L354.7 -28.5 L346.1 34.0 Z M347.6 34.4 L360.6 4.0 L351.0 35.7 Z M352.4 36.3 L386.0 -17.1 L356.5 38.7 Z M357.8 39.6 L380.4 15.4 L360.6 41.9 Z M361.7 43.0 L411.5 4.3 L364.8 46.7 Z M365.6 48.0 L395.2 33.0 L367.4 51.1 Z M368.1 52.5 L428.2 33.2 L369.7 57.0 Z M370.1 58.5 L403.0 54.5 L370.8 62.0 Z' fill='%2314100c' opacity='.30'/><circle cx='338' cy='66' r='30' fill='none' stroke='%2314100c' stroke-width='1.8' opacity='.6'/><circle cx='338' cy='66' r='26' fill='none' stroke='%2314100c' stroke-width='.9' opacity='.5'/><path d='M327 61 q4 -4 8 0 M341 61 q4 -4 8 0 M338 63 l-2 9 l4 0 M330 80 q8 5 16 0' fill='none' stroke='%2314100c' stroke-width='1.4' stroke-linecap='round' opacity='.6'/><g stroke='%2314100c' stroke-width='.7' opacity='.18'><path d='M0 10 L16 0'/><path d='M0 16 L26 0'/><path d='M0 22 L35 0'/><path d='M0 28 L45 0'/><path d='M0 34 L54 0'/><path d='M0 40 L64 0'/><path d='M0 46 L74 0'/><path d='M0 52 L83 0'/><path d='M0 58 L93 0'/><path d='M0 64 L102 0'/><path d='M0 70 L112 0'/><path d='M0 76 L122 0'/><path d='M0 82 L131 0'/><path d='M0 88 L141 0'/><path d='M0 94 L150 0'/><path d='M0 100 L160 0'/><path d='M0 106 L170 0'/><path d='M0 112 L179 0'/><path d='M0 118 L189 0'/><path d='M0 124 L198 0'/><path d='M0 130 L208 0'/><path d='M0 136 L218 0'/><path d='M0 142 L227 0'/><path d='M0 148 L237 0'/></g></svg>") 50% 0% / 100% 190px no-repeat, radial-gradient(
+      130% 70% at 50% -8%,
+      rgba(246, 244, 236, 0.62),
+      transparent 62%
+    ) 0% 0% / auto repeat, radial-gradient(
+      100% 55% at 50% 112%,
+      rgba(38, 34, 28, 0.4),
+      transparent 70%
+    ) 0% 0% / auto repeat, radial-gradient(
+      70% 90% at -12% 50%,
+      rgba(38, 34, 28, 0.3),
+      transparent 70%
+    ) 0% 0% / auto repeat, radial-gradient(
+      70% 90% at 112% 55%,
+      rgba(38, 34, 28, 0.3),
+      transparent 70%
+    ) 0% 0% / auto repeat, radial-gradient(
+      26px 20px at 14% 22%,
+      rgba(70, 60, 46, 0.2),
+      transparent 72%
+    ) 0% 0% / auto repeat, radial-gradient(
+      34px 26px at 83% 40%,
+      rgba(70, 60, 46, 0.17),
+      transparent 72%
+    ) 0% 0% / auto repeat, radial-gradient(
+      22px 18px at 22% 64%,
+      rgba(70, 60, 46, 0.16),
+      transparent 72%
+    ) 0% 0% / auto repeat, radial-gradient(
+      40px 30px at 70% 86%,
+      rgba(70, 60, 46, 0.18),
+      transparent 72%
+    ) 0% 0% / auto repeat, radial-gradient(
+      18px 16px at 46% 52%,
+      rgba(70, 60, 46, 0.12),
+      transparent 72%
+    ) 0% 0% / auto repeat, linear-gradient(#d3cfc2, #bfbbae) 0% 0% / auto repeat;
+  --page-backdrop: none;
+  --page-overlay: none;
+  --page-overlay-opacity: 1;
+  --page-grain:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")
+    0% 0% / auto repeat;
+  --page-grain-opacity: 0.3;
+  --text: #14100c;
+  --text-muted: #463f34;
+  --text-strong: #14100c;
+  --font-body: "EB Garamond", Georgia, serif;
+  --font-display: "Cormorant Garamond", "EB Garamond", serif;
+  --font-label: Cinzel, "EB Garamond", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 16px;
+  --weight-body: 500;
+  --weight-display: 700;
+  --display-shadow: none;
+  --focus: #8a2224;
+  --header-bg: transparent;
+  --header-text: #14100c;
+  --header-border: none;
+  --header-tagline: "";
+  --header-tagline-color: #8a6a14;
+  --header-tagline-font: Cinzel, serif;
+  --header-tagline-spacing: 0.3em;
+  --header-tagline-shadow: none;
+  --title-font: "IM Fell English", serif;
+  --title-size: 50px;
+  --title-weight: 400;
+  --title-spacing: 0;
+  --title-transform: none;
+  --title-color: #14100c;
+  --title-fill: none;
+  --title-shadow: 0 1px 0 rgba(240, 238, 230, 0.6);
+  --title-filter: none;
+  --subtitle-color: #14100c;
+  --badge-text: "";
+  --badge-bg: transparent;
+  --badge-fg: #14100c;
+  --icon-btn-bg: linear-gradient(180deg, #e6e2d6, #d6d2c4);
+  --icon-btn-fg: #14100c;
+  --icon-btn-border: 1px solid #1c1511;
+  --icon-btn-radius: 3px;
+  --icon-btn-shadow: 0 2px 0 rgba(20, 16, 12, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --card-bg:
+    linear-gradient(180deg, rgba(184, 144, 31, 0.13), rgba(184, 144, 31, 0.03)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --card-text: #14100c;
+  --card-border: 1px solid #1c1511;
+  --card-radius: 3px;
+  --card-shadow:
+    #d9d5c8 0px 0px 0px 4px inset, rgba(20, 16, 12, 0.7) 0px 0px 0px 5px inset, rgba(
+      184,
+      144,
+      31,
+      0.55
+    ) 0px 0px 0px 7px inset, rgba(20, 16, 12, 0.25) 0px 2px 0px 0px, rgba(30, 26, 20, 0.24) 0px 12px 22px 0px;
+  --card-padding: 24px 20px 22px;
+  --card-stripe: none;
+  --card-stripe-width: 0px;
+  --card-stripe-glow: none;
+  --card-ornament-top: none;
+  --card-ornament-top-height: 0px;
+  --card-ornament-top-opacity: 1;
+  --card-ornament-bottom: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='46' height='14' viewBox='0 0 46 14'><path d='M2 7 H17 M29 7 H44' stroke='%2314100c' stroke-width='.8' opacity='.6'/><path d='M23 1 L28 7 L23 13 L18 7 Z' fill='%23b8901f' stroke='%2314100c' stroke-width='.8'/><circle cx='23' cy='7' r='1.4' fill='%238a2224'/></svg>");
+  --card-ornament-bottom-width: 46px;
+  --card-ornament-bottom-height: 14px;
+  --card-corner: transparent;
+  --card-corner-2: transparent;
+  --card-corner-size: 0px;
+  --card-corner-thickness: 0px;
+  --card-corner-mirror: 1;
+  --card-led: none;
+  --card-led-shadow: none;
+  --card-tag: "";
+  --card-tag-counter: none;
+  --card-tag-color: #463f34;
+  --card-tag-font: Cinzel, serif;
+  --card-title-font: Cinzel, "EB Garamond", serif;
+  --card-title-size: 12px;
+  --card-title-weight: 600;
+  --card-title-spacing: 0.2em;
+  --card-title-transform: uppercase;
+  --card-title-color: #1f4a36;
+  --card-title-bg: transparent;
+  --card-title-border: none;
+  --card-title-radius: 0px;
+  --card-title-padding: 0;
+  --card-title-box-shadow: none;
+  --card-title-shadow: none;
+  --card-title-prefix: "";
+  --card-title-prefix-color: #1f4a36;
+  --card-title-icon-before: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5.2' fill='none' stroke='%235e430a' stroke-width='1.3'/><circle cx='8' cy='8' r='1.3' fill='%235e430a'/></svg>");
+  --card-title-icon-after: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.5 2.5 A6 6 0 1 0 11.5 13.5 A4.6 4.6 0 1 1 11.5 2.5 Z' fill='none' stroke='%231f4a36' stroke-width='1.3' stroke-linejoin='round'/></svg>");
+  --card-title-icon-size: 15px;
+  --card-title-rule: linear-gradient(
+    90deg,
+    transparent,
+    #8a6a14 12%,
+    #e2c35a 30%,
+    #b8901f 50%,
+    #e2c35a 70%,
+    #8a6a14 88%,
+    transparent
+  );
+  --card-title-rule-height: 2px;
+  --swatch-1:
+    linear-gradient(180deg, rgba(47, 107, 79, 0.1), rgba(47, 107, 79, 0.03)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --swatch-2:
+    linear-gradient(180deg, rgba(184, 144, 31, 0.13), rgba(184, 144, 31, 0.03)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --swatch-3:
+    linear-gradient(180deg, rgba(138, 34, 36, 0.08), rgba(138, 34, 36, 0.02)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --swatch-4:
+    linear-gradient(180deg, rgba(47, 107, 79, 0.1), rgba(47, 107, 79, 0.03)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --swatch-5:
+    linear-gradient(180deg, rgba(184, 144, 31, 0.13), rgba(184, 144, 31, 0.03)),
+    repeating-linear-gradient(135deg, rgba(20, 16, 12, 0.07) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #e0dccd, #d4d0c0);
+  --swatch-1-tag: "";
+  --swatch-2-tag: "";
+  --swatch-3-tag: "";
+  --swatch-4-tag: "";
+  --swatch-5-tag: "";
+  --acc: #8a2224;
+  --acc2: #2f6b4f;
+  --on-acc: #ffffff;
+  --good: #1f4a36;
+  --bad: #8a2224;
+  --warn: #8a6a14;
+  --info: #2f6b4f;
+  --dim: #463f34;
+  --track: #bdb8a8;
+  --track-2: #cdc8b8;
+  --divider: rgba(20, 16, 12, 0.14);
+  --btn-bg: linear-gradient(180deg, #e6e2d6, #d6d2c4);
+  --btn-fg: #14100c;
+  --btn-border: 1px solid #1c1511;
+  --btn-radius: 3px;
+  --btn-font: "EB Garamond", Georgia, serif;
+  --btn-weight: 700;
+  --btn-transform: none;
+  --btn-spacing: 0.02em;
+  --btn-shadow: 0 2px 0 rgba(20, 16, 12, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --control-clip: none;
+  --btn-primary-bg: #8a2224;
+  --btn-primary-fg: #ffffff;
+  --btn-primary-border: 1px solid #5e1416;
+  --btn-primary-shadow: 0 2px 0 rgba(20, 16, 12, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --input-bg: #d9d5c8;
+  --input-fg: #14100c;
+  --input-border: 1px solid rgba(20, 16, 12, 0.35);
+  --input-radius: 3px;
+  --input-placeholder: #6b6253;
+  --check-bg: transparent;
+  --check-border: #a8a290;
+  --check-radius: 3px;
+  --check-on-bg: #8a2224;
+  --check-on-fg: #ffffff;
+  --check-today: #8a2224;
+  --meter-bg: transparent;
+  --meter-radius: 6px;
+  --meter-shadow: none;
+  --meter-off: #cdc8b8;
+  --meter-on: #2f6b4f;
+  --meter-hi: #b8901f;
+  --meter-pk: #8a2224;
+  --meter-glow: 0px;
+  --meter-label: #14100c;
+  --progress-track: rgba(20, 16, 12, 0.08);
+  --progress-border: 1px solid rgba(20, 16, 12, 0.35);
+  --progress-radius: 2px;
+  --chart-grid: rgba(20, 16, 12, 0.15);
+  --chart-tip-bg: #14100c;
+  --chart-tip-fg: #e6e2d6;
+  --chart-guide: rgba(20, 16, 12, 0.4);
+  --surface-bg: #e6e2d6;
+  --surface-fg: #14100c;
+  --surface-border: 1px solid #1c1511;
+  --surface-radius: 6px;
+  --surface-shadow: 0 10px 30px rgba(20, 16, 12, 0.35);
+  --overlay-bg: rgba(20, 16, 12, 0.45);
+  --toast-bg: rgba(20, 16, 12, 0.92);
+  --toast-fg: #e6e2d6;
+  --toast-border: 1px solid rgba(230, 226, 214, 0.25);
+  --dock-bg: #e6e2d6;
+  --dock-fg: #14100c;
+  --dock-border: 1px solid #1c1511;
+  --coach-bg: #e6e2d6;
+  --bubble-user-bg: #8a2224;
+  --bubble-user-fg: #ffffff;
+  --bubble-coach-bg: #d9d5c8;
+  --bubble-coach-fg: #14100c;
+  --edit-outline: rgba(138, 34, 36, 0.6);
+  --edit-placeholder: rgba(138, 34, 36, 0.15);
+  --hero-off: #2a5461;
+  --hero-eyes: #ff8aa2;
+  --hero-eyes-off: #3b2a30;
+  --hero-aura: #5aa3b5;
+  --hero-aura-off: #244d58;
+  --hero-aura-lit: #8fe3f2;
+  --hero-pip: #b25550;
+  --hero-pip-off: #2f6b4f;
+  --hero-glow: radial-gradient(
+    closest-side,
+    rgba(196, 138, 96, 0.34),
+    rgba(90, 163, 181, 0.1) 55%,
+    transparent 72%
+  );
+}

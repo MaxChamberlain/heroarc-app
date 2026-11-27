@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.output/
+.nitro/
+.tanstack/
+.turbo/
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Saved copies of the original app (may contain personal health data). Never commit.
+reference/
+e2e/playwright/.auth/

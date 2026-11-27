@@ -1,0 +1,41 @@
+{
+  "name": "@heroarc/db",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Drizzle schema, migrations and database client for HeroArc (Postgres).",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "drizzle"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "generate": "drizzle-kit generate",
+    "migrate": "node --env-file-if-exists=../../.env dist/migrate.js",
+    "seed": "node --env-file-if-exists=../../.env dist/seed.js",
+    "invite": "node --env-file-if-exists=../../.env dist/invite.js"
+  },
+  "dependencies": {
+    "@heroarc/contracts": "workspace:*",
+    "drizzle-orm": "0.45.4",
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@heroarc/config": "workspace:*",
+    "@types/node": "^22",
+    "@types/pg": "8.23.1",
+    "better-auth": "1.7.28",
+    "drizzle-kit": "0.31.11",
+    "typescript": "6.0.3",
+    "vitest": "5.1.2"
+  }
+}

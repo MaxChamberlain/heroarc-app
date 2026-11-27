@@ -1,0 +1,200 @@
+/* Color Archive: paint swatches on cream. Every token is listed in ../tokens.json. */
+[data-theme="colorarchive"] {
+  --page-bg: linear-gradient(#eadfca, #d9ccb2) 0% 0% / auto repeat;
+  --page-backdrop: none;
+  --page-overlay: none;
+  --page-overlay-opacity: 1;
+  --page-grain:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")
+    0% 0% / auto repeat;
+  --page-grain-opacity: 0.26;
+  --text: #462e24;
+  --text-muted: #3e2f26;
+  --text-strong: #2c1c14;
+  --font-body: "DM Mono", monospace;
+  --font-display: Syne, sans-serif;
+  --font-label: "DM Mono", monospace;
+  --font-mono: "DM Mono", ui-monospace, Menlo, monospace;
+  --font-size: 15px;
+  --weight-body: 500;
+  --weight-display: 700;
+  --display-shadow: none;
+  --focus: #8c2a20;
+  --header-bg: transparent;
+  --header-text: #462e24;
+  --header-border: none;
+  --header-tagline: "";
+  --header-tagline-color: #8c2a20;
+  --header-tagline-font: "DM Mono", monospace;
+  --header-tagline-spacing: 0.18em;
+  --header-tagline-shadow: none;
+  --title-font: Syne, sans-serif;
+  --title-size: 41px;
+  --title-weight: 800;
+  --title-spacing: 0;
+  --title-transform: none;
+  --title-color: #462e24;
+  --title-fill: none;
+  --title-shadow: none;
+  --title-filter: none;
+  --subtitle-color: #14100c;
+  --badge-text: "";
+  --badge-bg: transparent;
+  --badge-fg: #2c1c14;
+  --icon-btn-bg: #f6efe0;
+  --icon-btn-fg: #462e24;
+  --icon-btn-border: 1px solid #462e24;
+  --icon-btn-radius: 8px;
+  --icon-btn-shadow: 0 2px 0 rgba(70, 46, 36, 0.25);
+  --card-bg: #e9cf7a;
+  --card-text: #2c1c14;
+  --card-border: 1px solid rgba(70, 46, 36, 0.55);
+  --card-radius: 10px 10px 4px 4px;
+  --card-shadow: 0 3px 0 rgba(70, 46, 36, 0.25), 0 10px 18px rgba(70, 46, 36, 0.12);
+  --card-padding: 24px 22px 26px 24px;
+  --card-stripe: linear-gradient(
+    #e9cf7a 0px,
+    #e9cf7a 20%,
+    #d98a7c 20%,
+    #d98a7c 40%,
+    #cdb89a 40%,
+    #cdb89a 60%,
+    #bfc9a8 60%,
+    #bfc9a8 80%,
+    #7a6a8c 80%,
+    #7a6a8c 100%
+  );
+  --card-stripe-width: 8px;
+  --card-stripe-glow: none;
+  --card-ornament-top: none;
+  --card-ornament-top-height: 0px;
+  --card-ornament-top-opacity: 1;
+  --card-ornament-bottom: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='12' viewBox='0 0 88 12'><rect x='0' y='1' width='14' height='10' rx='1' fill='%23a4bcd4'/><rect x='18' y='1' width='14' height='10' rx='1' fill='%23e9cf7a'/><rect x='36' y='1' width='14' height='10' rx='1' fill='%23d98a7c'/><rect x='54' y='1' width='14' height='10' rx='1' fill='%23cdb89a'/><rect x='72' y='1' width='14' height='10' rx='1' fill='%23bfc9a8'/></svg>");
+  --card-ornament-bottom-width: 88px;
+  --card-ornament-bottom-height: 12px;
+  --card-corner: transparent;
+  --card-corner-2: transparent;
+  --card-corner-size: 0px;
+  --card-corner-thickness: 0px;
+  --card-corner-mirror: 1;
+  --card-led: none;
+  --card-led-shadow: none;
+  --card-tag: "";
+  --card-tag-counter: none;
+  --card-tag-color: rgba(44, 28, 20, 0.7);
+  --card-tag-font: "DM Mono", monospace;
+  --card-title-font: Syne, sans-serif;
+  --card-title-size: 14px;
+  --card-title-weight: 800;
+  --card-title-spacing: 0.14em;
+  --card-title-transform: uppercase;
+  --card-title-color: #2c1c14;
+  --card-title-bg: transparent;
+  --card-title-border: none;
+  --card-title-radius: 0px;
+  --card-title-padding: 0;
+  --card-title-box-shadow: none;
+  --card-title-shadow: none;
+  --card-title-prefix: "";
+  --card-title-prefix-color: #8c2a20;
+  --card-title-icon-before: none;
+  --card-title-icon-after: none;
+  --card-title-icon-size: 0px;
+  --card-title-rule: none;
+  --card-title-rule-height: 0px;
+  --swatch-1: #a4bcd4;
+  --swatch-2: #e9cf7a;
+  --swatch-3: #d98a7c;
+  --swatch-4: #cdb89a;
+  --swatch-5: #bfc9a8;
+  --swatch-1-tag: "#A4BCD4";
+  --swatch-2-tag: "#E9CF7A";
+  --swatch-3-tag: "#D98A7C";
+  --swatch-4-tag: "#CDB89A";
+  --swatch-5-tag: "#BFC9A8";
+  --acc: #8c2a20;
+  --acc2: #462e24;
+  --on-acc: #ffffff;
+  --good: #244a32;
+  --bad: #8c2a20;
+  --warn: #7a4a0c;
+  --info: #2f5a80;
+  --dim: #3e2f26;
+  --track: rgba(255, 255, 255, 0.4);
+  --track-2: rgba(70, 46, 36, 0.12);
+  --divider: rgba(70, 46, 36, 0.16);
+  --btn-bg: #f6efe0;
+  --btn-fg: #462e24;
+  --btn-border: 1px solid #462e24;
+  --btn-radius: 8px;
+  --btn-font: "DM Mono", monospace;
+  --btn-weight: 500;
+  --btn-transform: uppercase;
+  --btn-spacing: 0.06em;
+  --btn-shadow: 0 2px 0 rgba(70, 46, 36, 0.25);
+  --control-clip: none;
+  --btn-primary-bg: #8c2a20;
+  --btn-primary-fg: #ffffff;
+  --btn-primary-border: 1px solid #462e24;
+  --btn-primary-shadow: 0 2px 0 rgba(70, 46, 36, 0.35);
+  --input-bg: #f6efe0;
+  --input-fg: #2c1c14;
+  --input-border: 1px solid rgba(70, 46, 36, 0.55);
+  --input-radius: 8px;
+  --input-placeholder: rgba(70, 46, 36, 0.55);
+  --check-bg: rgba(255, 255, 255, 0.35);
+  --check-border: rgba(70, 46, 36, 0.35);
+  --check-radius: 4px;
+  --check-on-bg: #8c2a20;
+  --check-on-fg: #ffffff;
+  --check-today: #462e24;
+  --meter-bg: #f6efe0;
+  --meter-radius: 3px;
+  --meter-shadow: inset 0 0 0 1px #462e24, 0 2px 0 rgba(70, 46, 36, 0.25);
+  --meter-off: rgba(70, 46, 36, 0.14);
+  --meter-on: #a4bcd4;
+  --meter-hi: #e9cf7a;
+  --meter-pk: #d98a7c;
+  --meter-glow: 0px;
+  --meter-label: #462e24;
+  --progress-track: rgba(255, 255, 255, 0.45);
+  --progress-border: 1px solid rgba(70, 46, 36, 0.45);
+  --progress-radius: 3px;
+  --chart-grid: rgba(70, 46, 36, 0.2);
+  --chart-tip-bg: #462e24;
+  --chart-tip-fg: #f6efe0;
+  --chart-guide: rgba(70, 46, 36, 0.45);
+  --surface-bg: #f6efe0;
+  --surface-fg: #2c1c14;
+  --surface-border: 1px solid #462e24;
+  --surface-radius: 12px;
+  --surface-shadow: 0 10px 30px rgba(70, 46, 36, 0.3);
+  --overlay-bg: rgba(70, 46, 36, 0.4);
+  --toast-bg: #462e24;
+  --toast-fg: #f6efe0;
+  --toast-border: 1px solid #462e24;
+  --dock-bg: #f6efe0;
+  --dock-fg: #462e24;
+  --dock-border: 1px solid #462e24;
+  --coach-bg: #f6efe0;
+  --bubble-user-bg: #8c2a20;
+  --bubble-user-fg: #ffffff;
+  --bubble-coach-bg: #e9cf7a;
+  --bubble-coach-fg: #2c1c14;
+  --edit-outline: rgba(140, 42, 32, 0.6);
+  --edit-placeholder: rgba(140, 42, 32, 0.12);
+  --hero-off: #2a5461;
+  --hero-eyes: #ff8aa2;
+  --hero-eyes-off: #3b2a30;
+  --hero-aura: #5aa3b5;
+  --hero-aura-off: #244d58;
+  --hero-aura-lit: #8fe3f2;
+  --hero-pip: #c87a70;
+  --hero-pip-off: #462e24;
+  --hero-glow: radial-gradient(
+    closest-side,
+    rgba(196, 138, 96, 0.34),
+    rgba(90, 163, 181, 0.1) 55%,
+    transparent 72%
+  );
+}

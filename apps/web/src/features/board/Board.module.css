@@ -1,0 +1,84 @@
+/* Board page frame. Tokens: themes/tokens.json. */
+.page {
+  min-height: 100dvh;
+}
+/* Desktop: Coach column first in the page (and keyboard order), shown on the right, running
+   the full height of the window beside the header and the board. */
+.body {
+  display: block;
+}
+.withCoach {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+.withCoach > aside {
+  grid-column: 2;
+  grid-row: 1;
+}
+.withCoach > .board {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+.main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
+}
+/* Desktop customizing: make room for the panel. */
+.withPanel .main,
+.withPanel header > div {
+  margin-right: 344px;
+  margin-left: max(0px, calc((100vw - 1440px - 344px) / 2));
+}
+@media (max-width: 1023px) {
+  .main {
+    padding: 4px 16px 40px;
+  }
+}
+@media (max-width: 639px) {
+  .main {
+    padding: 4px 12px calc(96px + env(safe-area-inset-bottom));
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60dvh;
+  padding: 24px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.toast {
+  position: fixed;
+  z-index: 9500;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  max-width: min(92vw, 520px);
+  padding: 8px 16px;
+  transform: translate(-50%, 12px);
+  background: var(--toast-bg);
+  color: var(--toast-fg);
+  border: var(--toast-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+.toastOn {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (max-width: 639px) {
+  .toast {
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+}

@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+  - e2e
+
+# pnpm 10 blocks dependency install scripts unless they are listed here.
+onlyBuiltDependencies:
+  - "@swc/core"
+  - esbuild
+
+# Optional native speedup for BullMQ's msgpackr; not needed.
+ignoredBuiltDependencies:
+  - msgpackr-extract

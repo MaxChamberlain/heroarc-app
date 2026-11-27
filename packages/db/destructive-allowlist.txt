@@ -1,0 +1,7 @@
+# Migrations listed here may contain destructive SQL (DROP, RENAME, column type changes,
+# TRUNCATE, DELETE). scripts/check-destructive-migrations.mjs fails CI for any other
+# migration that does. This file is CODEOWNERS-protected: adding a line needs a human
+# review, so an agent can never auto-merge a destructive migration.
+#
+# One migration filename per line, e.g.:
+# 0007_drop_legacy_columns.sql

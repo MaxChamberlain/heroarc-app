@@ -1,0 +1,203 @@
+/* Night: ink-and-moonlight samurai. Every token is listed in ../tokens.json. */
+[data-theme="night"] {
+  --page-bg:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 230' preserveAspectRatio='none'><defs><linearGradient id='m' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23c48a60' stop-opacity='0'/><stop offset='1' stop-color='%23c48a60' stop-opacity='.10'/></linearGradient></defs><path d='M0 150 L28 128 L52 142 L88 108 L120 136 L150 120 L190 150 L230 118 L262 140 L300 104 L334 132 L366 114 L390 130 V230 H0 Z' fill='%2316313a' opacity='.55'/><path d='M0 176 L36 152 L70 170 L112 140 L148 166 L196 146 L240 172 L284 142 L326 168 L390 150 V230 H0 Z' fill='%230d242d' opacity='.85'/><path d='M0 200 H390 V230 H0 Z' fill='url(%23m)'/><g fill='%23e8dcc6' opacity='.55'><circle cx='36' cy='30' r='.9'/><circle cx='92' cy='56' r='.7'/><circle cx='168' cy='22' r='.8'/><circle cx='214' cy='64' r='.7'/><circle cx='64' cy='84' r='.6'/></g></svg>")
+    top / 100% 230px no-repeat,
+    linear-gradient(180deg, #07141b 0%, #0d242d 34%, #091c24 62%, #050f15 100%) #050f15;
+  --page-backdrop: none;
+  --page-overlay:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.133) 0 1px, transparent 1px 4px),
+    radial-gradient(130% 90% at 50% 40%, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+  --page-overlay-opacity: 1;
+  --page-grain:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
+    0 0 / 200px 200px;
+  --page-grain-opacity: 0.055;
+  --text: #dccfb9;
+  --text-muted: #b3c3c2;
+  --text-strong: #e8dcc6;
+  --font-body: Inter, -apple-system, system-ui, sans-serif;
+  --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --font-label: ui-monospace, Menlo, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 15px;
+  --weight-body: 500;
+  --weight-display: 900;
+  --display-shadow: none;
+  --focus: #e8dcc6;
+
+  --header-bg: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%);
+  --header-text: #dccfb9;
+  --header-border: none;
+  --header-tagline: "今日の記録";
+  --header-tagline-color: #c48a60;
+  --header-tagline-font: "Zen Old Mincho", serif;
+  --header-tagline-spacing: 0.3em;
+  --header-tagline-shadow: 0 0 12px rgba(176, 105, 74, 0.725), 2px 2px 0 #000;
+  --title-font: "Zen Old Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --title-size: 38px;
+  --title-weight: 900;
+  --title-spacing: 0.02em;
+  --title-transform: none;
+  --title-color: #dccfb9;
+  --title-fill: none;
+  --title-shadow: 3px 3px 0 #000, 0 0 22px rgba(196, 138, 96, 0.404);
+  --title-filter: none;
+  --subtitle-color: #f3f0e6;
+  --badge-text: "";
+  --badge-bg: transparent;
+  --badge-fg: #dccfb9;
+  --icon-btn-bg: #0a1a21;
+  --icon-btn-fg: #dccfb9;
+  --icon-btn-border: 2px solid #000;
+  --icon-btn-radius: 0px;
+  --icon-btn-shadow: inset 0 0 0 1px #244d58;
+
+  --card-bg: linear-gradient(180deg, #14292a 0%, #0b1f1f 100%);
+  --card-text: #dccfb9;
+  --card-border: 0 solid transparent;
+  --card-radius: 0px;
+  --card-shadow:
+    inset 0 10px 0 #000, inset 0 -10px 0 #000, inset 0 0 60px rgba(0, 0, 0, 0.533),
+    inset 0 -26px 50px rgba(162, 120, 138, 0.08);
+  --card-padding: 28px 20px 30px 24px;
+  --card-stripe: linear-gradient(180deg, #c48a60, #984a5c);
+  --card-stripe-width: 4px;
+  --card-stripe-glow: 0 0 10px rgba(196, 138, 96, 0.482);
+  --card-ornament-top: none;
+  --card-ornament-top-height: 0px;
+  --card-ornament-top-opacity: 1;
+  --card-ornament-bottom: none;
+  --card-ornament-bottom-width: 0px;
+  --card-ornament-bottom-height: 0px;
+  --card-corner: transparent;
+  --card-corner-2: transparent;
+  --card-corner-size: 0px;
+  --card-corner-thickness: 0px;
+  --card-corner-mirror: 1;
+  --card-led: none;
+  --card-led-shadow: none;
+  --card-tag: "";
+  --card-tag-counter: none;
+  --card-tag-color: #b3c3c2;
+  --card-tag-font: ui-monospace, Menlo, monospace;
+  --card-title-font: "Zen Old Mincho", serif;
+  --card-title-size: 17px;
+  --card-title-weight: 900;
+  --card-title-spacing: 0.05em;
+  --card-title-transform: none;
+  --card-title-color: #dccfb9;
+  --card-title-bg: transparent;
+  --card-title-border: none;
+  --card-title-radius: 0px;
+  --card-title-padding: 0 0 10px;
+  --card-title-box-shadow: none;
+  --card-title-shadow: 2px 2px 0 #000;
+  --card-title-prefix: "";
+  --card-title-prefix-color: #c48a60;
+  --card-title-icon-before: none;
+  --card-title-icon-after: none;
+  --card-title-icon-size: 0px;
+  --card-title-rule: linear-gradient(rgba(196, 138, 96, 0.22), rgba(196, 138, 96, 0.22));
+  --card-title-rule-height: 1px;
+  --swatch-1: var(--card-bg);
+  --swatch-2: var(--card-bg);
+  --swatch-3: var(--card-bg);
+  --swatch-4: var(--card-bg);
+  --swatch-5: var(--card-bg);
+  --swatch-1-tag: "";
+  --swatch-2-tag: "";
+  --swatch-3-tag: "";
+  --swatch-4-tag: "";
+  --swatch-5-tag: "";
+
+  --acc: #c48a60;
+  --acc2: #3c7382;
+  --on-acc: #0b0b0b;
+  --good: #76b092;
+  --bad: #984a5c;
+  --warn: #e4c47a;
+  --info: #5fa3b4;
+  --dim: #5e6b79;
+  --track: #2b343e;
+  --track-2: #16313a;
+  --divider: rgba(220, 207, 185, 0.1);
+
+  --btn-bg: #0a1a21;
+  --btn-fg: #dccfb9;
+  --btn-border: 2px solid #000;
+  --btn-radius: 0px;
+  --btn-font: Inter, -apple-system, system-ui, sans-serif;
+  --btn-weight: 700;
+  --btn-transform: none;
+  --btn-spacing: 0.04em;
+  --btn-shadow: inset 0 0 0 1px #244d58;
+  --control-clip: none;
+  --btn-primary-bg: #0a1a21;
+  --btn-primary-fg: #dccfb9;
+  --btn-primary-border: 2px solid #000;
+  --btn-primary-shadow: inset 0 0 0 2px #c48a60, 0 0 13px rgba(196, 138, 96, 0.275);
+  --input-bg: #0a1a21;
+  --input-fg: #dccfb9;
+  --input-border: 1px solid rgba(128, 128, 128, 0.35);
+  --input-radius: 12px;
+  --input-placeholder: #7e9498;
+  --check-bg: transparent;
+  --check-border: #16313a;
+  --check-radius: 6px;
+  --check-on-bg: #c48a60;
+  --check-on-fg: #fff;
+  --check-today: #c48a60;
+
+  --meter-bg: rgba(0, 0, 0, 0.28);
+  --meter-radius: 6px;
+  --meter-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.45);
+  --meter-off: rgba(255, 255, 255, 0.1);
+  --meter-on: #4dff9a;
+  --meter-hi: #ffc94d;
+  --meter-pk: #ff4d6a;
+  --meter-glow: 4px;
+  --meter-label: #9facba;
+  --progress-track: #0a1a21;
+  --progress-border: 2px solid #000;
+  --progress-radius: 0px;
+  --chart-grid: rgba(220, 207, 185, 0.12);
+  --chart-tip-bg: rgba(5, 15, 21, 0.94);
+  --chart-tip-fg: #dccfb9;
+  --chart-guide: rgba(220, 207, 185, 0.35);
+
+  --surface-bg: #0a1a21;
+  --surface-fg: #dccfb9;
+  --surface-border: 1px solid rgba(255, 255, 255, 0.14);
+  --surface-radius: 18px;
+  --surface-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
+  --overlay-bg: rgba(0, 0, 0, 0.55);
+  --toast-bg: rgba(8, 12, 16, 0.9);
+  --toast-fg: #fff;
+  --toast-border: 1px solid rgba(255, 255, 255, 0.25);
+  --dock-bg: #1a2028;
+  --dock-fg: #dccfb9;
+  --dock-border: 1px solid rgba(196, 138, 96, 0.35);
+  --coach-bg: #0a1a21;
+  --bubble-user-bg: #c48a60;
+  --bubble-user-fg: #0b0b0b;
+  --bubble-coach-bg: #11262e;
+  --bubble-coach-fg: #dccfb9;
+  --edit-outline: rgba(196, 138, 96, 0.6);
+  --edit-placeholder: rgba(196, 138, 96, 0.18);
+
+  --hero-off: #2a5461;
+  --hero-eyes: #ff8aa2;
+  --hero-eyes-off: #3b2a30;
+  --hero-aura: #5aa3b5;
+  --hero-aura-off: #244d58;
+  --hero-aura-lit: #8fe3f2;
+  --hero-pip: #e6b88c;
+  --hero-pip-off: #3c7382;
+  --hero-glow: radial-gradient(
+    closest-side,
+    rgba(196, 138, 96, 0.34),
+    rgba(90, 163, 181, 0.1) 55%,
+    transparent 72%
+  );
+}

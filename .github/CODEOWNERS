@@ -1,0 +1,15 @@
+# Hermes (the AI maintainer) opens PRs that auto-merge when CI is green.
+# Anything listed here instead needs approval from a human code owner, so an agent can't
+# loosen its own guardrails, change deploy config, touch auth, or approve destructive
+# migrations. Requires branch protection: "Require review from Code Owners".
+#
+# Either owner's approval is enough. Owners need Write access to the repo for it to count.
+
+/.github/                                   @MaxChamberlain @erguniozdjan
+/render.yaml                                @MaxChamberlain @erguniozdjan
+/scripts/                                   @MaxChamberlain @erguniozdjan
+/package.json                               @MaxChamberlain @erguniozdjan
+/turbo.json                                 @MaxChamberlain @erguniozdjan
+/biome.json                                 @MaxChamberlain @erguniozdjan
+/packages/db/destructive-allowlist.txt      @MaxChamberlain @erguniozdjan
+/apps/api/src/auth/                         @MaxChamberlain @erguniozdjan

@@ -1,0 +1,31 @@
+{
+  "name": "heroarc",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.17.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "docker compose up -d --wait && turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "verify": "biome check . && turbo run typecheck test build",
+    "services:up": "docker compose up -d --wait",
+    "services:down": "docker compose down",
+    "db:generate": "pnpm --filter @heroarc/db generate",
+    "db:migrate": "pnpm --filter @heroarc/db migrate",
+    "db:seed": "pnpm --filter @heroarc/db seed",
+    "check:migrations": "node scripts/check-destructive-migrations.mjs",
+    "e2e": "pnpm --filter @heroarc/e2e e2e",
+    "user:invite": "pnpm --filter @heroarc/db invite"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.9",
+    "turbo": "2.11.13",
+    "typescript": "6.0.3"
+  }
+}
